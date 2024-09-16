@@ -23,6 +23,7 @@
 |   Ali Almusawi | aalmusawi@mail.sfsu.edu |    Aliglore  |  TBA           |
 |   Jacob Vazquez| jvazquez@sfsu.edu       |    Jacob9610 | Backend Lead   |
 |   Nathan Gabriel David| ndavid@sfsu.edu       |    natdav231 | Scrum Master   |
+| Ethan Zheng | ezheng2@sfsu.edu | ethanic17 | GitHub Master |
 
 **NO code should be stored in the root of your repository. You may rename the
 `application/` folder to your team's application name if you'd like, but all the
