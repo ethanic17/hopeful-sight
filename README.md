@@ -17,14 +17,14 @@
    ACCEPT the invite**.
 4. Fill out the table below
 
-| Student Name | Student Email | GitHub Username | Student's role |
-| :----------: | :-----------: | :-------------: | :------------: |
-|   John Doe   | jdoe@sfsu.edu             |      jdoe       |  Team Leader   |
-|   Ali Almusawi | aalmusawi@mail.sfsu.edu |    Aliglore  |  TBA           |
-|   Jacob Vazquez| jvazquez@sfsu.edu       |    Jacob9610 | Backend Lead   |
-|   Nathan Gabriel David| ndavid@sfsu.edu       |    natdav231 | Scrum Master   |
-| Ethan Zheng | ezheng2@sfsu.edu | ethanic17 | GitHub Master |
-| Miguel Maurer| mmaurer1@sfsu.edu| miguelCmaurer| Frontend Lead |
+|     Student Name     |      Student Email      | GitHub Username | Student's role |
+| :------------------: | :---------------------: | :-------------: | :------------: |
+|       John Doe       |      jdoe@sfsu.edu      |      jdoe       |  Team Leader   |
+|     Ali Almusawi     | aalmusawi@mail.sfsu.edu |    Aliglore     |   Front End    |
+|    Jacob Vazquez     |    jvazquez@sfsu.edu    |    Jacob9610    |  Backend Lead  |
+| Nathan Gabriel David |     ndavid@sfsu.edu     |    natdav231    |  Scrum Master  |
+|     Ethan Zheng      |    ezheng2@sfsu.edu     |    ethanic17    | GitHub Master  |
+|    Miguel Maurer     |    mmaurer1@sfsu.edu    |  miguelCmaurer  | Frontend Lead  |
 
 **NO code should be stored in the root of your repository. You may rename the
 `application/` folder to your team's application name if you'd like, but all the
