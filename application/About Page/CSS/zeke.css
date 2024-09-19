@@ -27,7 +27,7 @@ body{
 
     /*border: 1px solid grey; */
 }
-.navbar-component > div {
+.navbar-component > a ,.navbar-component > div{
     display: flex;
     font-family: Arial, sans-serif;
     font-size:18px;
@@ -52,7 +52,7 @@ body{
     
     text-emphasis-color: #5585b5;
 }
-.navbar-component > div > a{
+.navbar-component > a > div{
     text-decoration: none;
     color:black
 }
