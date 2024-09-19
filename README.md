@@ -25,7 +25,7 @@
 | Nathan Gabriel David |     ndavid@sfsu.edu     |    natdav231    |  Scrum Master  |
 |     Ethan Zheng      |    ezheng2@sfsu.edu     |    ethanic17    | GitHub Master  |
 |    Miguel Maurer     |    mmaurer1@sfsu.edu    |  miguelCmaurer  | Frontend Lead  |
-
+| Miguel (Zeke) Melo   |  mgaraldemleo@sfsu.edu  |  zekemelo2000   |    Intern      |
 **NO code should be stored in the root of your repository. You may rename the
 `application/` folder to your team's application name if you'd like, but all the
 source code should be stored inside that folder.**
