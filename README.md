@@ -1,4 +1,4 @@
-# CSC648-S0X-FA24-teamNum Repository
+# CSC648-S04-FA24-03 Repository
 
 **Application URL: <https://csc648-04-sp24-csc648-fall24-team03-fork.vercel.app/about.html>**
 
