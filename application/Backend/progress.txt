@@ -1,0 +1,15 @@
+We are currently going to use python as the core for our backend - Django
+Several javascript code may coexist
+
+Docker version 27.2.0, build 3ab4256
+Python3 3.9.6
+Django version 4.2.16
+
+Docker access token: dckr_pat_xmXxpzLc5Hkjpsdl9pRDhAkF8SI
+
+Action secret:
+DOCKERHUB_USER
+DOCKERHUB_TOKEN
+
+Apparently, 'flake8' package works great with Python3
+
