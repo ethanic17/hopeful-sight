@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from django.conf import settings
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -24,7 +25,15 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-8h_j$t3&o8i5ih3!cj_jful7+lvv75a4%7sp4sm)!co&wjp+zo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
+
+if not settings.DEBUG:
+    SWAGGER_SETTINGS = {
+        'DEFAULT_API_URL': 'http://54.183.85.198/',  # Update with your production URL
+        'USE_SESSION_AUTH': True,
+        'VALIDATOR_URL': None,
+    }
+
 
 ALLOWED_HOSTS = [
     '*',
