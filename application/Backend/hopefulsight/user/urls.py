@@ -1,7 +1,11 @@
-from django.urls import path
+from django.urls import path, include   
 from .views import UserViewSet
-from rest_framework.viewsets import ModelViewSet
+
+from core.routers import DefaultRouter
+router = DefaultRouter()
+router.register(r"users", UserViewSet, basename="users")
+app_name = "user"
 
 urlpatterns = [
-    path("", UserViewSet.as_view({"get": "list", "post": "create"})),
+    path("", include(router.urls)),
 ]
