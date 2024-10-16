@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const baseUrl = "https://pokeapi.co/api/v2/pokemon/";
+const baseUrl = "http://54.183.85.198";
 
 export default axios.create({
   baseURL: baseUrl,
