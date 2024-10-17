@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const baseUrl = "http://54.183.85.198";
+const baseUrl = "https://54.183.85.198";
 
 export function useAxiosWithToken() {
   const getInitialToken = () => localStorage.getItem("token") || "";
@@ -10,6 +10,7 @@ export function useAxiosWithToken() {
   const axiosInstance = axios.create({
     baseURL: baseUrl,
     headers: { "Content-Type": "application/json" },
+    withCredentials: true,
   });
 
   useEffect(() => {

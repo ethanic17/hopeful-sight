@@ -53,7 +53,7 @@ export function Requester({
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(undefined);
   const [status, setStatus] = useState();
-  const [showInfo, setShowInfo] = useState(true);
+  const [showInfo, setShowInfo] = useState(false);
 
   async function fetchURL(e) {
     e.preventDefault();
@@ -72,8 +72,14 @@ export function Requester({
       }
       setStatus(response.status);
       setData(response.data);
+      setShowInfo(true);
     } catch (e) {
+      if (setParentData) {
+        setParentData("");
+      }
       console.error("Request failed:", e);
+      setStatus(e?.response?.status);
+      setData(e?.response?.data);
     } finally {
       setLoading(false);
     }
@@ -83,23 +89,34 @@ export function Requester({
     <div
       className={`${colors(verb).mainBG} p-2 rounded-lg border  drop-shadow-md w-full lg:w-2/3 xl:w-1/2`}
     >
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-col-reverse gap-y-4 sm:flex-row sm:gap-y-1">
         <span className="flex place-items-center">
           <p
             className={`${colors(verb).verbBG} font-semibold rounded-md py-0.5 px-4 text-sm`}
           >
             {verb}
           </p>
-          <p className="px-3  font-semibold text-lg text-slate-700">
+          <p className="px-3 font-semibold text-lg text-slate-700">
             {!working && "(not working) "}
             {url}
           </p>
+          {status && (
+            <h3
+              className={`font-semibold ${
+                status >= 200 && status < 300
+                  ? "border-l-2 border-green-700 px-2 py-0.5 text-green-50 bg-green-400 rounded-r-sm"
+                  : "border-l-2 border-red-700 px-2 py-0.5 text-red-50 bg-red-400 rounded-r-sm"
+              }`}
+            >
+              {status}
+            </h3>
+          )}
         </span>
         <div className="space-x-3">
           {(body || data) && (
             <button
               onClick={() => setShowInfo(!showInfo)}
-              className="bg-teal-500 rounded-lg py-0.5 px-3 text-teal-50"
+              className="font-semibold bg-slate-700 rounded-lg py-0.5 px-3 text-slate-50"
             >
               {showInfo ? "Hide" : "Show"}
             </button>
@@ -108,9 +125,9 @@ export function Requester({
             onClick={fetchURL}
             className={`${
               authentication
-                ? "bg-green-500 text-green-50"
+                ? "bg-green-50 text-slate-900 border border-slate-900"
                 : "bg-gray-400 text-gray-50"
-            } rounded-lg py-0.5 px-3`}
+            } rounded-lg py-0.5 px-3 font-semibold`}
             disabled={!authentication}
           >
             {authentication ? "Fetch" : "No auth"}
@@ -127,27 +144,13 @@ export function Requester({
               </div>
             </div>
           )}
-          {loading && !data && (
-            <div className={`mt-4 ${colors(verb).secondaryBG} p-2 rounded-md`}>
-              <h3 className="font-semibold">Response Data</h3>
-              <div className="p-2 text-slate-700">Loading ...</div>
-            </div>
-          )}
           {data && (
             <div className={`mt-4 ${colors(verb).secondaryBG} p-2 rounded-md`}>
               <div className="flex space-x-4 items-center">
                 <h3 className="font-semibold">Response Data</h3>
-                <h3
-                  className={`font-semibold ${
-                    status >= 200 && status < 300
-                      ? "border-l-2 border-green-700 px-2 py-0.5 text-green-50 bg-green-400 rounded-r-sm"
-                      : "border-l-2 border-red-700 px-2 py-0.5 text-red-50 bg-red-400 rounded-r-sm"
-                  }`}
-                >
-                  {status}
-                </h3>
               </div>
               <div className="p-2 text-slate-700">
+                {loading && !data && "Loading..."}
                 {JSON.stringify(data, null, 2)}
               </div>
             </div>
