@@ -27,7 +27,7 @@ FORCE_SCRIPT_NAME = None
 SECRET_KEY = 'django-insecure-8h_j$t3&o8i5ih3!cj_jful7+lvv75a4%7sp4sm)!co&wjp+zo'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 if not settings.DEBUG:
     SWAGGER_SETTINGS = {
@@ -56,8 +56,12 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework.authtoken',
     'core',
+    'account',
     'corsheaders',
     'drf_yasg',
+    'glasses',
+    'donator',
+    'donatee',
 ]
 
 MIDDLEWARE = [
@@ -94,13 +98,17 @@ TEMPLATES = [
 ]
 
 DJOSER = {
+    'TOKEN_MODEL': 'rest_framework.authtoken.models.Token',
     'SERIALIZERS': {
-
-
+        'user': 'user.serializers.CustomUserSerializer',
+        # Other serializers...
     },
-
-
+    'TOKEN': {
+        'CREATE': '/auth/token/login/',
+        'DESTROY': '/auth/token/logout/',  # This enables the token destruction endpoint
+    },
 }
+
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -167,6 +175,11 @@ STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 AUTH_USER_MODEL = 'user.CustomUser'
+
+LOGIN_URL = "/api-auth/login/"
+LOGOUT_URL = "/auth/token/logout/"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = '/api-auth/login/'
 
 # CORS_ALLOW_ALL_ORIGINS = True
 # CORS_ALLOW_CREDENTIALS = True
