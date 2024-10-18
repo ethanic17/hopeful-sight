@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { EditableInputs } from "./EditableInput";
 
 function colors(verb) {
   switch (verb.toUpperCase()) {
@@ -49,11 +50,17 @@ export function Requester({
   setParentData = undefined,
   axios,
   working = false,
+  editable = false,
 }) {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(undefined);
   const [status, setStatus] = useState();
   const [showInfo, setShowInfo] = useState(false);
+  const [dynamicURL, setDynamicURL] = useState("{input}");
+  const [editableBody, setEditableBody] = useState(
+    JSON.stringify(body, null, 2),
+  );
+  const [validBody, setValidBody] = useState(true);
 
   async function fetchURL(e) {
     e.preventDefault();
@@ -61,11 +68,19 @@ export function Requester({
       setLoading(true);
       setStatus();
       setData(undefined);
-      if (!body) {
-        body = {};
+      let parsedBody = {};
+      if (editableBody) {
+        try {
+          parsedBody = JSON.parse(editableBody);
+        } catch (e) {
+          setValidBody(false);
+          return;
+        }
       }
-
-      const response = await axios[verb.toLowerCase()](url, body);
+      const response = await axios[verb.toLowerCase()](
+        url + (editable ? dynamicURL : ""),
+        parsedBody,
+      );
 
       if (setParentData) {
         setParentData(response.data);
@@ -77,9 +92,10 @@ export function Requester({
       if (setParentData) {
         setParentData("");
       }
-      console.error("Request failed:", e);
-      setStatus(e?.response?.status);
-      setData(e?.response?.data);
+      console.log("Request failed:", e);
+      setStatus(e?.response?.status || e?.code);
+      setData(e?.response?.data || "");
+      setShowInfo(true);
     } finally {
       setLoading(false);
     }
@@ -87,19 +103,26 @@ export function Requester({
 
   return (
     <div
-      className={`${colors(verb).mainBG} p-2 rounded-lg border  drop-shadow-md w-full lg:w-2/3 xl:w-1/2`}
+      className={`${colors(verb).mainBG} p-2 rounded-lg border drop-shadow-md w-full lg:w-2/3 xl:w-1/2`}
     >
       <div className="flex justify-between flex-col-reverse gap-y-4 sm:flex-row sm:gap-y-1">
         <span className="flex place-items-center">
           <p
-            className={`${colors(verb).verbBG} font-semibold rounded-md py-0.5 px-4 text-sm`}
+            className={`${colors(verb).verbBG} font-semibold rounded-md py-0.5 px-2 text-xs sm:text-sm`}
           >
+            {!working && <span className="pr-1">🛠️</span>}
             {verb}
           </p>
-          <p className="px-3 font-semibold text-lg text-slate-700">
-            {!working && "(not working) "}
-            {url}
+          <p className="px-3 font-semibold text-sm sm:text-lg text-slate-700">
+            <span className="flex">
+              {url}
+              {editable && (
+                <EditableInputs setState={setDynamicURL} state={dynamicURL} />
+              )}
+            </span>
           </p>
+        </span>
+        <div className="flex space-x-3">
           {status && (
             <h3
               className={`font-semibold ${
@@ -111,12 +134,10 @@ export function Requester({
               {status}
             </h3>
           )}
-        </span>
-        <div className="space-x-3">
           {(body || data) && (
             <button
               onClick={() => setShowInfo(!showInfo)}
-              className="font-semibold bg-slate-700 rounded-lg py-0.5 px-3 text-slate-50"
+              className="text-sm sm:text-lg  font-semibold bg-slate-700 rounded-lg  px-1 py-0.5 sm:px-3 text-slate-50"
             >
               {showInfo ? "Hide" : "Show"}
             </button>
@@ -137,11 +158,17 @@ export function Requester({
       {showInfo && (
         <div>
           {body && (
-            <div className={`mt-4 ${colors(verb).secondaryBG} p-2 rounded-md`}>
+            <div className={`mt-4 ${colors(verb).secondaryBG} p-4 rounded-md`}>
               <h3 className="font-semibold">Request Body</h3>
-              <div className="p-2 text-slate-700">
-                {JSON.stringify(body, null, 10)}
-              </div>
+              <textarea
+                onFocus={() => {
+                  setValidBody(true);
+                }}
+                className={`focus:outline-none resize-none w-full p-2 rounded-md text-sm ${validBody ? "bg-white/30" : "bg-red/30 text-red-700"} text-slate-700 overflow-auto`}
+                rows={editableBody.split("\n").length}
+                value={editableBody}
+                onChange={(e) => setEditableBody(e.target.value)}
+              />
             </div>
           )}
           {data && (
@@ -151,7 +178,7 @@ export function Requester({
               </div>
               <div className="p-2 text-slate-700">
                 {loading && !data && "Loading..."}
-                {JSON.stringify(data, null, 2)}
+                <pre>{JSON.stringify(data, null, 2)}</pre>
               </div>
             </div>
           )}

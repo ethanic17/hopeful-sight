@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const baseUrl = "https://54.183.85.198";
+const baseUrl = import.meta.env.VITE_URL;
 
 export function useAxiosWithToken() {
   const getInitialToken = () => localStorage.getItem("token") || "";
