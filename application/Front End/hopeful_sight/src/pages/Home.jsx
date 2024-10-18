@@ -21,149 +21,11 @@ export function Home() {
       authentication: !!token,
       setParentData: () => setToken(""),
     },
-    {
-      working: true,
-      url: "/auth/users/",
-      verb: "GET",
-      authentication: !!token,
-    },
-    {
-      working: true,
-      url: "/auth/users/",
-      verb: "POST",
-      body: {
-        username: "newAuthUser2",
-        password: "thisisthePass23",
-      },
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/activation/",
-      verb: "POST",
-      body: { uid: 6, token: "token" },
-      authentication: !!token,
-    },
+
     {
       working: true,
       url: "/auth/users/me/",
       verb: "GET",
-      authentication: !!token,
-    },
-    {
-      working: true,
-      url: "/auth/users/me/",
-      verb: "PUT",
-      body: { username: "admin2" },
-      authentication: !!token,
-    },
-    {
-      working: true,
-      url: "/auth/users/me/",
-      verb: "PATCH",
-      body: { username: "admin2" },
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/me/",
-      verb: "DELETE",
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/resend_activation/",
-      verb: "POST",
-      body: { email: "admin@admin.com" },
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/reset_password/",
-      verb: "POST",
-      body: {
-        email: "admin@admin.com",
-      },
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/reset_password_confirm/",
-      verb: "POST",
-      body: {
-        uid: ":(",
-        token: ":(",
-        new_password: ":(",
-      },
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/reset_username/",
-      verb: "POST",
-      body: {
-        email: "newadmin@admin.com",
-      },
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/reset_username_confirm/",
-      verb: "POST",
-      body: {
-        new_username: "newAdminName",
-      },
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/set_password/",
-      verb: "POST",
-      body: {
-        new_password: "newpass",
-        current_password: "admin",
-      },
-      authentication: !!token,
-    },
-    {
-      working: false,
-      url: "/auth/users/set_username/",
-      verb: "POST",
-      body: {
-        new_username: "newpass",
-        current_password: "admin",
-      },
-      authentication: !!token,
-    },
-    {
-      working: true,
-      url: "/auth/users/",
-      verb: "GET",
-      authentication: !!token,
-      editable: true,
-    },
-    {
-      working: false,
-      url: "/auth/users/1/",
-      verb: "PUT",
-      authentication: !!token,
-      body: {
-        email: "email@email.com",
-      },
-    },
-    {
-      working: false,
-      url: "/auth/users/1/",
-      verb: "PATCH",
-      authentication: !!token,
-      body: {
-        email: "email@email.com",
-      },
-    },
-    {
-      working: false,
-      url: "/auth/users/1/",
-      verb: "DELETE",
       authentication: !!token,
     },
   ];
@@ -194,6 +56,7 @@ export function Home() {
         username: "newUser",
       },
       authentication: !!token,
+      editable: true,
     },
     {
       working: true,
@@ -232,7 +95,6 @@ export function Home() {
         is_dependent: false,
       },
       authentication: !!token,
-      editable: true,
     },
     {
       working: true,
@@ -326,7 +188,7 @@ export function Home() {
     },
     {
       working: true,
-      url: "/api/donator/",
+      url: "/api/donators/",
       verb: "DELETE",
       authentication: !!token,
       editable: true,
@@ -343,13 +205,13 @@ export function Home() {
   const accountRequests = [
     {
       working: true,
-      url: "/api/accounts",
+      url: "/api/accounts/",
       verb: "GET",
       authentication: !!token,
     },
     {
       working: true,
-      url: "/api/accounts",
+      url: "/api/accounts/",
       verb: "POST",
       body: {
         phone_number: "(707)111-1111",
@@ -509,9 +371,6 @@ export function Home() {
       working: true,
       url: "/api/glasses/",
       verb: "GET",
-      body: {
-        username: "newUser",
-      },
       authentication: !!token,
       editable: true,
     },
@@ -523,8 +382,6 @@ export function Home() {
         name: "newName",
         size: 10,
         color: "Teal",
-        perscription_range_upper: 1,
-        perscription_range_lower: -1,
         inventory: 100,
         description: "new desctiption",
       },
@@ -536,13 +393,11 @@ export function Home() {
       url: "/api/glasses/",
       verb: "PATCH",
       body: {
-        name: "test",
-        size: 9,
-        color: "red",
-        perscription_range_upper: 0,
-        perscription_range_lower: 0,
-        inventory: 22,
-        description: "test",
+        name: "newName",
+        size: 10,
+        color: "Teal",
+        inventory: 100,
+        description: "new desctiption",
       },
       authentication: !!token,
       editable: true,
@@ -562,8 +417,8 @@ export function Home() {
     { path: "/donatee", arr: donateeRequests },
     { path: "/donator", arr: donatorRequests },
     { path: "/account", arr: accountRequests },
-    { path: "/donation", arr: donationRequests },
-    { path: "/region", arr: regionRequests },
+    // { path: "/donation", arr: donationRequests },
+    // { path: "/region", arr: regionRequests },
     { path: "/glasses", arr: glassesRequests },
   ];
   return (

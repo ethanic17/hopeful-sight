@@ -77,11 +77,17 @@ export function Requester({
           return;
         }
       }
+
+      let useableURL = dynamicURL;
+
+      if (dynamicURL.at(-1) != "/" && dynamicURL.length != 0) {
+        useableURL += "/";
+      }
       const response = await axios[verb.toLowerCase()](
-        url + (editable ? dynamicURL : ""),
+        url + (editable ? useableURL : ""),
         parsedBody,
       );
-
+      setDynamicURL(useableURL);
       if (setParentData) {
         setParentData(response.data);
       }
@@ -164,7 +170,7 @@ export function Requester({
                 onFocus={() => {
                   setValidBody(true);
                 }}
-                className={`focus:outline-none resize-none w-full p-2 rounded-md text-sm ${validBody ? "bg-white/30" : "bg-red/30 text-red-700"} text-slate-700 overflow-auto`}
+                className={`focus:outline-none resize-none w-full p-2 rounded-md text-sm ${validBody ? "bg-white/30" : "bg-red-400/40 text-red-700"} text-slate-700 overflow-auto`}
                 rows={editableBody.split("\n").length}
                 value={editableBody}
                 onChange={(e) => setEditableBody(e.target.value)}
