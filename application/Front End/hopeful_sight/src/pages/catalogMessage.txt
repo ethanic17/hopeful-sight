@@ -1,0 +1,10 @@
+Notes:
+
+
+Catalog.html must be hosted from the server to be presented.
+
+Add to cart button will have more functionality
+
+Index.js/App.jsx ?
+
+Form.html/Index.html ?

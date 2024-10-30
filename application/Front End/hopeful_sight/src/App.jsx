@@ -24,4 +24,23 @@ function App() {
   );
 }
 
+////
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Catalog from './Catalog';
+import Form from './form'; // Assuming you have a Form component
+
+ReactDOM.render(
+  <Router>
+    <Switch>
+      <Route exact path="/" component={Catalog} />
+      <Route path="/form/:id" component={Form} />
+    </Switch>
+  </Router>,
+  document.getElementById('root')
+);
+////
+
+
+
 export default App;
