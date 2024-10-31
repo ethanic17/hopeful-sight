@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route path="/" element={<Home/>} />
+          <Route path="/" element={<Home />} />
           <Route path="map" element={<Map />} />
           <Route path="account" element={<Account />} />
           <Route path="about" element={<AboutUs />} />
@@ -23,24 +23,5 @@ function App() {
     </BrowserRouter>
   );
 }
-
-////
-import React from 'react';
-import ReactDOM from 'react-dom';
-import Catalog from './Catalog';
-import Form from './form'; // Assuming you have a Form component
-
-ReactDOM.render(
-  <Router>
-    <Switch>
-      <Route exact path="/" component={Catalog} />
-      <Route path="/form/:id" component={Form} />
-    </Switch>
-  </Router>,
-  document.getElementById('root')
-);
-////
-
-
 
 export default App;
