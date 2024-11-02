@@ -1,7 +1,7 @@
 // Home.jsx
 import { GlassesCard } from "../components/GlassesCard";
 import { glasses } from "../test_data/glasses";
-import "./Home.css";
+import "./home.css";
 
 export function Home() {
   return (
