@@ -1,0 +1,20 @@
+@media (max-width: 1024px) {
+  .grid {
+    /* 3 columns for medium sized displays  */
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    /* 2 columns for small displays */
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .grid {
+    /* 1 column for extra small displays */
+    grid-template-columns: 1fr;
+  }
+}

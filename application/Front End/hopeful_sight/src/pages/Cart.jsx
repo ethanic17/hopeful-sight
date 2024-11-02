@@ -31,7 +31,7 @@ export function Cart() {
    * Selected and rendered glasses information must be dynamic
    * based on the user's selection from the previous page.
    * In progress...
-   * 
+   *
    * @returns {JSX.Element} The JSX element representing the specific glasses selected
    */
 
@@ -40,7 +40,6 @@ export function Cart() {
   //   glassPrice: {glassesPrice},
   //   glassImage: {glassesImage}
   // };
-
 
   return (
     <div className="max-w-md mx-auto mt-10">
