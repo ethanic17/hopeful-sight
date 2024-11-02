@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import { Home } from "./pages/Home";
 import { Account } from "./pages/Account";
 import { Map } from "./pages/Map";

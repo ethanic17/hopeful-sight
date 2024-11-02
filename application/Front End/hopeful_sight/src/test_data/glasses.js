@@ -6,7 +6,8 @@ export let glasses = [
     color: "Black",
     perscription_range_upper: 2,
     perscription_range_lower: -4,
-    img: "src/pages/glassesImages/glass4image.jpg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 25,
     description: "A timeless design that suits all face shapes.",
   },
@@ -17,7 +18,8 @@ export let glasses = [
     color: "Gold",
     perscription_range_upper: 1.5,
     perscription_range_lower: -3.5,
-    img: "src/pages/glassesImages/glass1image.jpg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 15,
     description: "Stylish aviator glasses that enhance your look.",
   },
@@ -28,7 +30,8 @@ export let glasses = [
     color: "Clear",
     perscription_range_upper: 1,
     perscription_range_lower: 3,
-    img: "src/pages/glassesImages/glass2image.jpeg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 40,
     description: "Lightweight readers perfect for daily use.",
   },
@@ -40,6 +43,7 @@ export let glasses = [
     perscription_range_upper: 2.5,
     perscription_range_lower: -2,
     img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 20,
     description: "Designed for active lifestyles with full coverage.",
   },
@@ -50,7 +54,8 @@ export let glasses = [
     color: "Tortoise",
     perscription_range_upper: 2,
     perscription_range_lower: -5,
-    img: "src/pages/glassesImages/glass4image.jpg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 30,
     description: "Retro round frames for a classic look.",
   },
@@ -61,7 +66,8 @@ export let glasses = [
     color: "Silver",
     perscription_range_upper: 1.75,
     perscription_range_lower: -6,
-    img: "src/pages/glassesImages/glass1image.jpg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 18,
     description: "Modern rectangular frames for a professional appearance.",
   },
@@ -72,7 +78,8 @@ export let glasses = [
     color: "Red",
     perscription_range_upper: 2,
     perscription_range_lower: -2.5,
-    img: "src/pages/glassesImages/glass2image.jpeg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 12,
     description: "Trendy cat-eye frames that make a bold statement.",
   },
@@ -84,6 +91,7 @@ export let glasses = [
     perscription_range_upper: 1,
     perscription_range_lower: -3,
     img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 22,
     description: "Sustainable bamboo frames for the environmentally conscious.",
   },
@@ -94,7 +102,8 @@ export let glasses = [
     color: "Neon green",
     perscription_range_upper: 3,
     perscription_range_lower: -5,
-    img: "src/pages/glassesImages/glass4image.jpg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 10,
     description: "Durable goggles designed for outdoor sports and activities.",
   },
@@ -105,7 +114,8 @@ export let glasses = [
     color: "Matte Black",
     perscription_range_upper: 1.5,
     perscription_range_lower: -4.5,
-    img: "src/pages/glassesImages/glass1image.jpg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 35,
     description: "Iconic wayfarer style that never goes out of fashion.",
   },
@@ -116,7 +126,8 @@ export let glasses = [
     color: "red",
     perscription_range_upper: 0,
     perscription_range_lower: 0,
-    img: "src/pages/glassesImages/glass2image.jpeg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 22,
     description: "test",
   },
@@ -127,7 +138,8 @@ export let glasses = [
     color: "red",
     perscription_range_upper: 0,
     perscription_range_lower: 0,
-    img: "src/pages/glassesImages/glass4image.jpg",
+    img: "src/pages/glassesImages/glass3image.png",
+
     inventory: 22,
     description: "test",
   },
@@ -135,5 +147,6 @@ export let glasses = [
     glasses_id: 11,
     name: "Ray Bans RF1243 Aviator 2",
     price: "$150",
-    img: "src/pages/glassesImages/glass1image.jpg",
-  }];
+    img: "src/pages/glassesImages/glass3image.png",
+  },
+];
