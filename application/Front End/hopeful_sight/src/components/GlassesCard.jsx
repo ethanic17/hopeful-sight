@@ -1,22 +1,34 @@
 /**
  * @typedef {Object} GlassesData
- * @property {string} img - The URL for the glasses image (alias for img or imageUrl).
- * @property {string} imageUrl - The URL for the glasses image.
- * @property {string} name - The name of the glasses.
- * @property {string} description - A description of the glasses.
- * @property {string} size - The frame width of the glasses.
+ * @property {string} img  The URL for the glasses image (alias for img or imageUrl)
+ * @property {string} imageUrl  The URL for the glasses image
+ * @property {string} name  The name of the glasses
+ * @property {string} description  A description of the glasses
+ * @property {string} size  The frame width of the glasses
  */
 
 /**
  * Renders and displays a div component for displaying glasses information.
- * @param {Object} props - Component props.
- * @param {GlassesData} props.data - An object containing glasses data.
+ * @param {Object} props  Component props
+ * @param {GlassesData} props.data  An object containing glasses data
  *
- * @returns {JSX.Element} A JSX element representing the glasses card.
+ * @returns {JSX.Element} A JSX element representing the glasses card
  * @example <GlassesCard data={glasses[i]} />
  */
 
+import React, { useContext } from "react";
+import { CartContext } from "../test_data/cartData";
+import { useNavigate } from "react-router-dom";
+
 export function GlassesCard({ data }) {
+  const { addToCart } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const handleAddToCart = () => {
+    addToCart(data);
+    navigate("/cart");
+  };
+
   return (
     <div className="flex flex-col w-full h-[500px] bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:shadow-xl hover:scale-102">
       <div className="flex-shrink-0 w-full h-[250px] mb-4">
@@ -35,7 +47,10 @@ export function GlassesCard({ data }) {
         </h2>
         <h2 className="text-sm text-gray-800">Frame Width: {data.size}</h2>
       </div>
-      <button className="w-full mt-4 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors duration-300">
+      <button
+        onClick={handleAddToCart}
+        className="w-full mt-4 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
+      >
         Add to Cart
       </button>
     </div>

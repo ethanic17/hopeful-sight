@@ -1,63 +1,33 @@
-/**
- * Cart component for handling glasses selection confirmation
- *
- * This component renders a form for users to input their personal details
- * before confirming their selection of glasses. It displays the selected glasses
- * and upon submission, redirects the user to a confirmation page.
- *
- * @returns {JSX.Element} The JSX element representing the form for glasses selection
- */
+import React, { useContext } from "react";
+import { CartContext } from "../test_data/cartData";
 
 export function Cart() {
-  /**
-   * Handles the form submission.
-   *
-   * @param {React.FormEvent<HTMLFormElement>} event - The form event object.
-   */
+  const { cartItem } = useContext(CartContext);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Redirect to the confirmation page
     window.location.href = "/confirmation";
   };
 
-  // Sample data for glasses selection
-  const selectedGlasses = {
-    name: "Ray Bans RF1243 Aviator 2",
-    price: "$150",
-    imageUrl: "src/pages/glassesImages/glass1image.jpg",
-  };
-
-  /**
-   * Selected and rendered glasses information must be dynamic
-   * based on the user's selection from the previous page.
-   * In progress...
-   *
-   * @returns {JSX.Element} The JSX element representing the specific glasses selected
-   */
-
-  // const selectedGlassesOne = {
-  //   glassName: {glassesName},
-  //   glassPrice: {glassesPrice},
-  //   glassImage: {glassesImage}
-  // };
-
   return (
     <div className="max-w-md mx-auto mt-10">
-      {/* Box with the glasses selected */}
-      <div className="bg-gray-100 rounded-lg p-4 mb-6 shadow-md">
-        <h3 className="text-lg font-semibold mb-2">Your Selection:</h3>
-        <div className="flex items-center">
-          <img
-            src={selectedGlasses.imageUrl}
-            alt={selectedGlasses.name}
-            className="w-100 h-20 object-cover mr-4"
-          />
-          <div>
-            <p className="font-bold">{selectedGlasses.name}</p>
-            <p>{selectedGlasses.price}</p>
+      {cartItem && (
+        <div className="bg-gray-100 rounded-lg p-4 mb-6 shadow-md">
+          <h3 className="text-lg font-semibold mb-2">Your Selection:</h3>
+          <div className="flex items-center mb-4">
+            <img
+              src={cartItem.img || cartItem.imageUrl}
+              alt={cartItem.name}
+              className="w-20 h-20 object-cover mr-4"
+            />
+            <div>
+              <p className="font-bold">{cartItem.name}</p>
+              <p>{cartItem.price || "$0.00"}</p>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       <form
         onSubmit={handleSubmit}
@@ -67,6 +37,7 @@ export function Cart() {
           Confirm Your Glasses Selection
         </h2>
 
+        {/* Name input */}
         <div className="mb-4">
           <label
             htmlFor="name"
@@ -83,6 +54,7 @@ export function Cart() {
           />
         </div>
 
+        {/* Email input */}
         <div className="mb-4">
           <label
             htmlFor="email"
@@ -99,6 +71,7 @@ export function Cart() {
           />
         </div>
 
+        {/* Phone input */}
         <div className="mb-4">
           <label
             htmlFor="phone"
@@ -116,6 +89,7 @@ export function Cart() {
           />
         </div>
 
+        {/* Address input */}
         <div className="mb-6">
           <label
             htmlFor="address"
@@ -131,6 +105,7 @@ export function Cart() {
           ></textarea>
         </div>
 
+        {/* Submit button */}
         <button
           type="submit"
           className="w-full bg-blue-500 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded focus:outline-none focus:shadow-outline"
