@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import logo from "./pages/Logo/Logo.png";
+import { Header } from "./components/Header";
+import logo from "./pages/Logo/hopefulsightlogo.png";
 
 /**
  * Layout component for the application, providing a consistent structure with header, main content area, and footer
@@ -13,15 +14,9 @@ import logo from "./pages/Logo/Logo.png";
 export function Layout() {
   return (
     <>
-      <header className="bg-gray-100 shadow-md">
-        <div className="container mx-auto py-4">
-          <img
-            src={logo}
-            alt="Hopeful Sight Logo"
-            className="h-10 w-auto mx-auto"
-          />
-        </div>
-      </header>
+
+
+      <Header/>
 
       <main>
         {/**
@@ -33,6 +28,7 @@ export function Layout() {
 
       <footer className="bg-gray-200 text-center py-4 mt-4">
         <div>Copyright Ⓒ</div>
+        
       </footer>
     </>
   );
