@@ -39,10 +39,10 @@ export function Header() {
                 </NavLink>
 
                 <NavLink 
-                    to="/"
+                    to="donate"
                     className="text-white hover:text-gray-400 mx-7"
                 > 
-                    Login or Account 
+                    Donate 
                 </NavLink>
 
             </div>
