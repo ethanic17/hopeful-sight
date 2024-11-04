@@ -26,7 +26,7 @@ export function RoutesTest() {
       working: true,
       url: "/auth/users/me/",
       verb: "GET",
-      authentication: !!token,
+      authentication: true,
     },
   ];
 

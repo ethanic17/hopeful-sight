@@ -13,23 +13,16 @@ import logo from "./pages/Logo/hopefulsightlogo.png";
 
 export function Layout() {
   return (
-    <>
+    <div className="grid h-dvh grid-rows-[auto_1fr]">
+      <Header />
 
-
-      <Header/>
-
-      <main>
-        {/**
-         * Renders the child routes in this layout
-         * Outlet from react-router-dom is used to display the current route's element
-         */}
+      <main className="overflow-auto">
         <Outlet />
       </main>
 
       <footer className="bg-gray-200 text-center py-4 mt-4">
         <div>Copyright Ⓒ</div>
-        
       </footer>
-    </>
+    </div>
   );
 }

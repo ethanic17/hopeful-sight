@@ -15,20 +15,15 @@
  * @returns {JSX.Element} A JSX element representing the glasses card
  * @example <GlassesCard data={glasses[i]} />
  */
-
-import React, { useContext } from "react";
-import { CartContext } from "../test_data/cartData";
 import { useNavigate } from "react-router-dom";
 
-export function GlassesCard({ data }) {
-  const { addToCart } = useContext(CartContext);
+export function GlassesCard({ loggedIn, data, onClick }) {
   const navigate = useNavigate();
 
   const handleAddToCart = () => {
-    addToCart(data);
+    // addToCart(data);
     navigate("/cart");
   };
-
   return (
     <div className="flex flex-col w-full h-[500px] bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:shadow-xl hover:scale-102">
       <div className="flex-shrink-0 w-full h-[250px] mb-4">
@@ -48,10 +43,10 @@ export function GlassesCard({ data }) {
         <h2 className="text-sm text-gray-800">Frame Width: {data.size}</h2>
       </div>
       <button
-        onClick={handleAddToCart}
+        onClick={onClick}
         className="w-full mt-4 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
       >
-        Add to Cart
+        {!loggedIn ? "Sign In" : "Add to Cart"}
       </button>
     </div>
   );
