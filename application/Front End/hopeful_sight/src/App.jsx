@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Account } from "./pages/Account";
-import { Map } from "./pages/Map";
+import { MapPage } from "./pages/Map";
 import { AboutUs } from "./pages/About";
 import { Cart } from "./pages/Cart";
 import { RoutesTest } from "./pages/RoutesTests";
@@ -41,7 +41,7 @@ function App() {
             <Route index element={<Home />} />
             <Route path="/donate" element={<Donate />} />
             <Route path="home" element={<Home />} />
-            <Route path="map" element={<Map />} />
+            <Route path="map" element={<MapPage />} />
             <Route path="account" element={<Account />} />
             <Route path="about" element={<AboutUs />} />
             <Route path="cart" element={<Cart />} />
