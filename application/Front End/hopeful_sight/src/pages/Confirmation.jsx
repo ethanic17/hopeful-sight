@@ -52,12 +52,20 @@ function Confirmation() {
         ></div>
       </div>
       <p className="mb-4">Confirmation Number: #{confirmationNumber}</p>
-      <button
-        onClick={() => navigate("/")}
-        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Back to Home
-      </button>
+      <div className="flex space-x-2">
+        <button
+          onClick={() => navigate("/")}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Back to Home
+        </button>
+        <button
+          onClick={() => navigate("/map")}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          View Product Map
+        </button>
+      </div>
     </div>
   );
 }
