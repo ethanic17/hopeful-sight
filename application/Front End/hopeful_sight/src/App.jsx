@@ -1,4 +1,7 @@
+import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { setAuth } from "./app/features/userSlice";
 import { Home } from "./pages/Home";
 import { Account } from "./pages/Account";
 import { Map } from "./pages/Map";
@@ -10,6 +13,12 @@ import { CartProvider } from "./test_data/cartData";
 import Donate from "./pages/Donate";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const getInitialToken = () => localStorage.getItem("token") || "";
+    dispatch(setAuth(getInitialToken()));
+  }, []);
+
   return (
     <BrowserRouter>
       <CartProvider>
