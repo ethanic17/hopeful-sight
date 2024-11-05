@@ -8,6 +8,7 @@ import { RoutesTest } from "./pages/RoutesTests";
 import { Layout } from "./Layout";
 import { CartProvider } from "./test_data/cartData";
 import Donate from "./pages/Donate";
+import DonationForm from "./pages/DonationForm";
 
 function App() {
   return (
@@ -23,6 +24,9 @@ function App() {
             <Route path="about" element={<AboutUs />} />
             <Route path="cart" element={<Cart />} />
             <Route path="routes" element={<RoutesTest />} />
+            {/* Donation Flow Routes */}
+            <Route path="donate" element={<Donate />} />
+            <Route path="donate/form" element={<DonationForm />} />
           </Route>
         </Routes>
       </CartProvider>
