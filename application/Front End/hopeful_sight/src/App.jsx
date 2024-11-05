@@ -12,6 +12,7 @@ import { Layout } from "./Layout";
 import { CartProvider } from "./test_data/cartData";
 import Donate from "./pages/Donate";
 import DonationForm from "./pages/DonationForm";
+import Confirmation from "./pages/Confirmation";
 
 function App() {
   const dispatch = useDispatch();
@@ -36,6 +37,7 @@ function App() {
             {/* Donation Flow Routes */}
             <Route path="donate" element={<Donate />} />
             <Route path="donate/form" element={<DonationForm />} />
+            <Route path="confirmation" element={<Confirmation />} />
           </Route>
         </Routes>
       </CartProvider>
