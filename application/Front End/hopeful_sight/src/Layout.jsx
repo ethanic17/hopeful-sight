@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 import logo from "./pages/Logo/hopefulsightlogo.png";
 
 /**
@@ -15,14 +16,10 @@ export function Layout() {
   return (
     <div className="grid h-dvh grid-rows-[auto_1fr]">
       <Header />
-
-      <main className="overflow-auto">
+      <main className="min-h-full overflow-auto">
         <Outlet />
+        <Footer />
       </main>
-
-      <footer className="bg-gray-200 text-center py-4 mt-4">
-        <div>Copyright Ⓒ</div>
-      </footer>
     </div>
   );
 }

@@ -63,7 +63,7 @@ function DonationForm() {
   };
 
   return (
-    <div className="max-w-md mx-auto mt-10">
+    <div className="max-w-md mx-auto mt-10 h-full">
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-lg rounded-lg p-6"

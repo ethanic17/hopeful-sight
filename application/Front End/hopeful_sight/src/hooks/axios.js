@@ -5,7 +5,7 @@ import { setAuth } from "../app/features/userSlice";
 
 const baseUrl = import.meta.env.VITE_URL;
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
   baseURL: baseUrl,
   headers: { "Content-Type": "application/json" },
   withCredentials: true,
@@ -19,7 +19,7 @@ export function useAxiosWithToken() {
     const requestInterceptor = axiosInstance.interceptors.request.use(
       (config) => {
         console.log("request");
-        if (!token) {
+        if (!config.headers.Authorization) {
           config.headers.Authorization = `Token ${token}`;
           console.log("Auth: ", config.headers.Authorization);
         }
@@ -61,18 +61,7 @@ export function useAxiosWithToken() {
 export default useAxiosWithToken;
 
 async function refresh() {
-  let response = await axios.post(
-    `${baseUrl}auth/token/login/`,
-    {
-      username: "admin",
-      password: "admin",
-    },
-    {
-      headers: { "Content-Type": "application/json" },
-      withCredentials: true,
-    },
-  );
-  let token = response.data.auth_token;
-  console.log("New token: ", token);
-  return token;
+  const getInitialToken = () => localStorage.getItem("token") || "";
+  console.log("New token: ", getInitialToken());
+  return getInitialToken();
 }

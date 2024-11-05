@@ -1,7 +1,4 @@
-import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { setAuth } from "./app/features/userSlice";
 import { Home } from "./pages/Home";
 import { Account } from "./pages/Account";
 import { Map } from "./pages/Map";
@@ -13,12 +10,27 @@ import { CartProvider } from "./test_data/cartData";
 import Donate from "./pages/Donate";
 import DonationForm from "./pages/DonationForm";
 import Confirmation from "./pages/Confirmation";
+import { useEffect } from "react";
+import useAxiosWithToken from "./hooks/axios";
+import { useDispatch } from "react-redux";
+import { login } from "./app/features/userSlice";
 
 function App() {
   const dispatch = useDispatch();
+  let axiosInter = useAxiosWithToken();
+  async function FetchInitialUser() {
+    try {
+      let resp = await axiosInter.get("/auth/users/me/");
+      if (resp.status == 200) {
+        dispatch(login(resp.data));
+      }
+    } catch (e) {
+      console.log("cant login");
+    }
+  }
+
   useEffect(() => {
-    const getInitialToken = () => localStorage.getItem("token") || "";
-    dispatch(setAuth(getInitialToken()));
+    FetchInitialUser();
   }, []);
 
   return (

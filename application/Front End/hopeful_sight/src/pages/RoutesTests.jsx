@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { Requester } from "../components/Requester";
-import useAxiosWithToken from "../hooks/axios";
 
 export function RoutesTest() {
-  const { token, setToken, axiosInstance: axios } = useAxiosWithToken();
   const [router, setRouter] = useState(0);
   const authRequests = [
     {
@@ -11,22 +9,17 @@ export function RoutesTest() {
       url: "/auth/token/login/",
       verb: "POST",
       body: { username: "admin", password: "admin" },
-      authentication: true,
-      setParentData: (data) => setToken(data.auth_token),
     },
     {
       working: true,
       url: "/auth/token/logout/",
       verb: "POST",
-      authentication: !!token,
-      setParentData: () => setToken(""),
     },
 
     {
       working: true,
       url: "/auth/users/me/",
       verb: "GET",
-      authentication: true,
     },
   ];
 
@@ -35,8 +28,6 @@ export function RoutesTest() {
       working: true,
       url: "/api/users/",
       verb: "GET",
-
-      authentication: !!token,
     },
     {
       working: true,
@@ -46,7 +37,6 @@ export function RoutesTest() {
         username: "newUser",
         email: "email@email.com",
       },
-      authentication: !!token,
     },
     {
       working: true,
@@ -55,21 +45,18 @@ export function RoutesTest() {
       body: {
         username: "newUser",
       },
-      authentication: !!token,
       editable: true,
     },
     {
       working: true,
       url: "/api/users/",
       verb: "DELETE",
-      authentication: !!token,
       editable: true,
     },
     {
       working: true,
       url: "/api/users/",
       verb: "GET",
-      authentication: !!token,
       editable: true,
     },
   ];
@@ -79,7 +66,6 @@ export function RoutesTest() {
       working: true,
       url: "/api/donatees/",
       verb: "GET",
-      authentication: !!token,
     },
     {
       working: true,
@@ -94,7 +80,6 @@ export function RoutesTest() {
         current_bank_balance: 100,
         is_dependent: false,
       },
-      authentication: !!token,
     },
     {
       working: true,
@@ -109,7 +94,6 @@ export function RoutesTest() {
         current_bank_balance: 100,
         is_dependent: false,
       },
-      authentication: !!token,
       editable: true,
     },
     {
@@ -125,21 +109,18 @@ export function RoutesTest() {
         current_bank_balance: 100,
         is_dependent: false,
       },
-      authentication: !!token,
       editable: true,
     },
     {
       working: false,
       url: "/api/donatees/",
       verb: "DELETE",
-      authentication: !!token,
       editable: true,
     },
     {
       working: true,
       url: "/api/donatees/",
       verb: "GET",
-      authentication: !!token,
       editable: true,
     },
   ];
@@ -149,7 +130,6 @@ export function RoutesTest() {
       working: true,
       url: "/api/donators/",
       verb: "GET",
-      authentication: !!token,
     },
     {
       working: true,
@@ -160,7 +140,6 @@ export function RoutesTest() {
         total_amount_donated: 100,
         account: 1,
       },
-      authentication: !!token,
     },
     {
       working: true,
@@ -171,7 +150,6 @@ export function RoutesTest() {
         total_amount_donated: 100,
         account: 1,
       },
-      authentication: !!token,
       editable: true,
     },
     {
@@ -183,21 +161,18 @@ export function RoutesTest() {
         total_amount_donated: 100,
         account: 1,
       },
-      authentication: !!token,
       editable: true,
     },
     {
       working: true,
       url: "/api/donators/",
       verb: "DELETE",
-      authentication: !!token,
       editable: true,
     },
     {
       working: true,
       url: "/api/donators/",
       verb: "GET",
-      authentication: !!token,
       editable: true,
     },
   ];
@@ -207,7 +182,6 @@ export function RoutesTest() {
       working: true,
       url: "/api/accounts/",
       verb: "GET",
-      authentication: !!token,
     },
     {
       working: true,
@@ -220,7 +194,6 @@ export function RoutesTest() {
         state: "CA",
         zip_code: "121211",
       },
-      authentication: !!token,
     },
     {
       working: true,
@@ -233,7 +206,6 @@ export function RoutesTest() {
         state: "CA",
         zip_code: "121211",
       },
-      authentication: !!token,
       editable: true,
     },
     {
@@ -247,21 +219,18 @@ export function RoutesTest() {
         state: "CA",
         zip_code: "121211",
       },
-      authentication: !!token,
       editable: true,
     },
     {
       working: true,
       url: "/api/accounts/",
       verb: "DELETE",
-      authentication: !!token,
       editable: true,
     },
     {
       working: true,
       url: "/api/accounts/",
       verb: "GET",
-      authentication: !!token,
       editable: true,
     },
   ];
@@ -271,7 +240,6 @@ export function RoutesTest() {
       working: false,
       url: "/api/donation/",
       verb: "GET",
-      authentication: !!token,
     },
     {
       working: false,
@@ -281,7 +249,6 @@ export function RoutesTest() {
         username: "newUser",
         email: "email@email.com",
       },
-      authentication: !!token,
     },
     {
       working: false,
@@ -290,21 +257,18 @@ export function RoutesTest() {
       body: {
         username: "newUser",
       },
-      authentication: !!token,
       editable: true,
     },
     {
       working: false,
       url: "/api/donation/",
       verb: "DELETE",
-      authentication: !!token,
       editable: true,
     },
     {
       working: false,
       url: "/api/donation/",
       verb: "GET",
-      authentication: !!token,
       editable: true,
     },
   ];
@@ -314,7 +278,6 @@ export function RoutesTest() {
       working: false,
       url: "/api/region/",
       verb: "GET",
-      authentication: !!token,
     },
     {
       working: false,
@@ -324,7 +287,6 @@ export function RoutesTest() {
         username: "newUser",
         email: "email@email.com",
       },
-      authentication: !!token,
     },
     {
       working: false,
@@ -333,14 +295,12 @@ export function RoutesTest() {
       body: {
         username: "newUser",
       },
-      authentication: !!token,
       editable: true,
     },
     {
       working: false,
       url: "/api/region/",
       verb: "GET",
-      authentication: !!token,
       editable: true,
     },
   ];
@@ -350,7 +310,6 @@ export function RoutesTest() {
       working: true,
       url: "/api/glasses/",
       verb: "GET",
-      authentication: !!token,
     },
     {
       working: true,
@@ -365,13 +324,11 @@ export function RoutesTest() {
         inventory: 22,
         description: "test",
       },
-      authentication: !!token,
     },
     {
       working: true,
       url: "/api/glasses/",
       verb: "GET",
-      authentication: !!token,
       editable: true,
     },
     {
@@ -385,7 +342,6 @@ export function RoutesTest() {
         inventory: 100,
         description: "new desctiption",
       },
-      authentication: !!token,
       editable: true,
     },
     {
@@ -399,14 +355,12 @@ export function RoutesTest() {
         inventory: 100,
         description: "new desctiption",
       },
-      authentication: !!token,
       editable: true,
     },
     {
       working: true,
       url: "/api/glasses/",
       verb: "DELETE",
-      authentication: !!token,
       editable: true,
     },
   ];
@@ -437,7 +391,6 @@ export function RoutesTest() {
                 key={
                   request.url + request.verb + (request?.editable ? "edit" : "")
                 }
-                axios={axios}
                 {...request}
               />
             );

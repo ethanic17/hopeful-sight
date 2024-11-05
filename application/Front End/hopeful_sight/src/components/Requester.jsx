@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { EditableInputs } from "./EditableInput";
+import useAxiosWithToken from "../hooks/axios";
 
 function colors(verb) {
   switch (verb.toUpperCase()) {
@@ -46,9 +47,7 @@ export function Requester({
   url,
   verb,
   body = undefined,
-  authentication = 0,
   setParentData = undefined,
-  axios,
   working = false,
   editable = false,
 }) {
@@ -57,6 +56,7 @@ export function Requester({
   const [status, setStatus] = useState();
   const [showInfo, setShowInfo] = useState(false);
   const [dynamicURL, setDynamicURL] = useState("{input}");
+  const axios = useAxiosWithToken();
   const [editableBody, setEditableBody] = useState(
     JSON.stringify(body, null, 2),
   );
@@ -65,6 +65,7 @@ export function Requester({
   async function fetchURL(e) {
     e.preventDefault();
     try {
+      if (loading) return;
       setLoading(true);
       setStatus();
       setData(undefined);
@@ -150,14 +151,9 @@ export function Requester({
           )}
           <button
             onClick={fetchURL}
-            className={`${
-              authentication
-                ? "bg-green-50 text-slate-900 border border-slate-900"
-                : "bg-gray-400 text-gray-50"
-            } rounded-lg py-0.5 px-3 font-semibold`}
-            disabled={!authentication}
+            className={`bg-green-50 text-slate-900 border border-slate-900 rounded-lg py-0.5 px-3 font-semibold`}
           >
-            {authentication ? "Fetch" : "No auth"}
+            Fetch
           </button>
         </div>
       </div>
