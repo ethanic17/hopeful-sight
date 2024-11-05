@@ -62,6 +62,8 @@ INSTALLED_APPS = [
     'glasses',
     'donator',
     'donatee',
+    'region',
+    'donation',
 ]
 
 MIDDLEWARE = [
