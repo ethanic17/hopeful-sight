@@ -103,6 +103,7 @@ DJOSER = {
     'TOKEN_MODEL': 'rest_framework.authtoken.models.Token',
     'SERIALIZERS': {
         'user': 'user.serializers.CustomUserSerializer',
+        'current_user': 'user.serializers.CustomUserMeSerializer',
         # Other serializers...
     },
     'TOKEN': {

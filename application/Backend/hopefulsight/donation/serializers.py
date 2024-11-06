@@ -5,5 +5,5 @@ from .models import Donation
 class DonationSerializer(serializers.ModelSerializer):
     class Meta:
         model = Donation
-        fields = ['donation_id', 'amount', 'date', 'account_id']
+        fields = ['donation_id', 'amount', 'date', 'account_id', 'region']
 
