@@ -5,9 +5,13 @@ import { useState } from "react";
 import useAxiosWithToken from "../hooks/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { addAccountType } from "../app/features/userSlice";
+import {
+  addAccountID,
+  addAccountType,
+  addAccountTypeID,
+} from "../app/features/userSlice";
 
-export function AccountForm({ back, accountType, setStep }) {
+export function AccountForm({ accountType, setStep, userID }) {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -17,7 +21,7 @@ export function AccountForm({ back, accountType, setStep }) {
   const axiosInter = useAxiosWithToken();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
+  console.l;
   async function submitForm(e) {
     e.preventDefault();
     setLoading(true);
@@ -27,17 +31,31 @@ export function AccountForm({ back, accountType, setStep }) {
       city: city,
       state: state,
       zip_code: zipCode,
+      user: userID,
     });
     if (resp.status === 201) {
+      console.log(resp.data);
+      dispatch(addAccountID(resp.data.account_id));
       if (accountType === "donatee") {
-        setStep(2);
+        setStep((state) => state + 1);
       } else {
         dispatch(addAccountType(accountType));
+        await createDonator(resp.data.account_id);
         navigate("/account");
       }
     }
 
     setLoading(false);
+  }
+
+  async function createDonator(id) {
+    let resp = await axiosInter.post("/api/donators/", {
+      has_donated: false,
+      total_amount_donated: 0,
+      account: id,
+    });
+    console.log(resp);
+    dispatch(addAccountTypeID(resp.donator_id));
   }
 
   return (
@@ -86,7 +104,7 @@ export function AccountForm({ back, accountType, setStep }) {
         className="w-full"
         onClick={(e) => {
           e.preventDefault();
-          back(0);
+          setStep((state) => state - 1);
         }}
       >
         Back

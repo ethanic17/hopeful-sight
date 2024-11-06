@@ -17,7 +17,7 @@ export function AccountTypeForm() {
               onClick={(e) => {
                 setAccountType("donator");
                 e.preventDefault();
-                setStep(1);
+                setStep(step + 1);
               }}
             >
               As Donator
@@ -25,7 +25,7 @@ export function AccountTypeForm() {
             <Button
               onClick={(e) => {
                 e.preventDefault();
-                setStep(1);
+                setStep(step + 1);
                 setAccountType("donatee");
               }}
             >

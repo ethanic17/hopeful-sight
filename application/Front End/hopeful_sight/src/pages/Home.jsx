@@ -4,14 +4,17 @@ import { Overlay } from "../components/Overlay";
 import { glasses } from "../test_data/glasses";
 import { useSelector } from "react-redux";
 import { AuthForm } from "../components/AuthForm";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
   const [show, setShow] = useState(false);
   const loggedIn = useSelector((state) => state.user.userInfo.loggedIn);
-
+  const navigate = useNavigate();
   function handleCardClick() {
     if (!loggedIn) {
       setShow(true);
+    } else {
+      navigate("/donate/form");
     }
   }
 
