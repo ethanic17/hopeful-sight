@@ -5,11 +5,12 @@
  * A button to return to the main catalog
  */
 import React from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 function Donate() {
   const navigate = useNavigate();
-
+  const isLoggedIn = useSelector((state) => state.user.userInfo.loggedIn);
   /**
    * Handles navigation to the donation form page
    */
@@ -27,7 +28,7 @@ function Donate() {
         onClick={handleDonateClick}
         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
       >
-        Sign Up to Donate
+        {isLoggedIn ? "Donate" : "Sign Up to Donate"}
       </button>
       <button
         onClick={handleCatalogClick}
