@@ -1,5 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
+import { useSelector } from "react-redux";
+
 const center = [39.8283, -98.5795];
 const uswest = [37.7749, -122.4194];
 const ussouthwest = [35.1983, -111.6513];
@@ -9,31 +11,39 @@ const ussoutheast = [29.9511, -90.0715];
 const usnortheast = [40.7128, -74.006];
 
 export function MapCard() {
+  let amountDonated = useSelector((state) => state.user.userInfo.amountDonated);
+  console.log(amountDonated);
+
+  amountDonated =
+    amountDonated == 0
+      ? localStorage.getItem("total_donations")
+      : amountDonated;
+
   const donationAmouts = [
     {
       position: uswest,
       textContent: "United States West Donation Count:",
-      donationCount: 1,
+      donationCount: amountDonated,
     },
     {
       position: ussouthwest,
       textContent: "United States Southwest Donation Count:",
-      donationCount: 1,
+      donationCount: 0,
     },
     {
       position: usmidwest,
       textContent: "United States Midwest Donation Count:",
-      donationCount: 1,
+      donationCount: 0,
     },
     {
       position: ussoutheast,
       textContent: "United States Southeast Donation Count:",
-      donationCount: 1,
+      donationCount: 0,
     },
     {
       position: usnortheast,
       textContent: "United States Northeast Donation Count:",
-      donationCount: 1,
+      donationCount: 0,
     },
   ];
 

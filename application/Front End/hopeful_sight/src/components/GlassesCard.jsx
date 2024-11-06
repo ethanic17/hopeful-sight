@@ -54,7 +54,7 @@ export function GlassesCard({ onClick, loggedIn, data }) {
         onClick={onClick}
         className="w-full mt-4 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
       >
-        {!loggedIn ? "Sign In" : "Add to Cart"}
+        {!loggedIn ? "Sign In" : "Donate"}
       </button>
     </div>
   );

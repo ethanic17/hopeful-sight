@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   addAccountID,
-  addAccountType,
+  addAccountInfo,
   addAccountTypeID,
 } from "../app/features/userSlice";
 
@@ -21,30 +21,39 @@ export function AccountForm({ accountType, setStep, userID }) {
   const axiosInter = useAxiosWithToken();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.l;
+
   async function submitForm(e) {
     e.preventDefault();
-    setLoading(true);
-    let resp = await axiosInter.post("/api/accounts/", {
-      phone_number: phoneNumber,
-      address: address,
-      city: city,
-      state: state,
-      zip_code: zipCode,
-      user: userID,
-    });
-    if (resp.status === 201) {
-      console.log(resp.data);
-      dispatch(addAccountID(resp.data.account_id));
-      if (accountType === "donatee") {
-        setStep((state) => state + 1);
-      } else {
-        dispatch(addAccountType(accountType));
-        await createDonator(resp.data.account_id);
-        navigate("/account");
-      }
-    }
-
+    // setLoading(true);
+    // let resp = await axiosInter.post("/api/accounts/", {
+    //   phone_number: phoneNumber,
+    //   address: address,
+    //   city: city,
+    //   state: state,
+    //   zip_code: zipCode,
+    //   user: userID,
+    // });
+    // if (resp.status === 201) {
+    //   console.log(resp.data);
+    //   dispatch(addAccountID(resp.data.account_id));
+    //   if (accountType === "donatee") {
+    //     setStep((state) => state + 1);
+    //   } else {
+    //     dispatch(addAccountType(accountType));
+    //     await createDonator(resp.data.account_id);
+    //     navigate("/account");
+    //   }
+    // }
+    dispatch(
+      addAccountInfo({
+        phone_number: phoneNumber,
+        address: address,
+        city: city,
+        state: state,
+        zip_code: zipCode,
+      }),
+    );
+    navigate("/account");
     setLoading(false);
   }
 

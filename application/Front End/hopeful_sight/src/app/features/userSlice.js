@@ -11,6 +11,7 @@ const initialState = {
     accountId: null,
     donatorId: null,
     amountDonated: 0,
+    accountInfo: {},
   },
 };
 
@@ -43,13 +44,24 @@ const userSlice = createSlice({
       localStorage.setItem("account_id", action.payload);
       state.userInfo.accountId = action.payload;
     },
-    addAccountTypeID: (state, action) => {
-      localStorage.setItem("donation_type_id", action.payload);
-      state.userInfo.accountId = action.payload;
+    addAccountInfo: (state, action) => {
+      localStorage.setItem("account_info", JSON.stringify(action.payload));
+      state.userInfo.accountInfo = action.payload;
     },
     addDonationAmount: (state, action) => {
-      state.userInfo.amountDonated =
-        Number(state.userInfo.amountDonated) + Number(action.payload);
+      let oldState = localStorage.getItem("total_donations");
+
+      localStorage.setItem(
+        "total_donations",
+        Number(oldState) + Number(action.payload),
+      );
+      oldState = localStorage.getItem("total_donations");
+      state.userInfo.amountDonated = oldState;
+    },
+    logout: (state, action) => {
+      localStorage.setItem("token", "");
+      state.token = "";
+      state.userInfo.loggedIn = false;
     },
   },
 });
@@ -58,10 +70,12 @@ export const {
   setAuth,
   setInfo,
   login,
+  logout,
   addAccountType,
   addAccountID,
   addAccountTypeID,
   addDonationAmount,
+  addAccountInfo,
 } = userSlice.actions;
 
 export default userSlice.reducer;

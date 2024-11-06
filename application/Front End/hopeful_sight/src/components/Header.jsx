@@ -27,6 +27,11 @@ export function Header() {
         <NavLink to="donate" className="text-white hover:text-gray-400 mx-7">
           Donate
         </NavLink>
+        {isLoggedIn && (
+          <NavLink to="account" className="text-white hover:text-gray-400 mx-7">
+            Account
+          </NavLink>
+        )}
       </div>
     </div>
   );

@@ -32,7 +32,6 @@ function App() {
       if (resp.status == 200) {
         dispatch(login(resp.data));
         console.log(resp.data);
-        dispatch(addAccountID(localStorage.getItem("account_id") || ""));
       }
       await fetchAccount();
     } catch (e) {
