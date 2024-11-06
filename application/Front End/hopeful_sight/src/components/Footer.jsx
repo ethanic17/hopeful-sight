@@ -1,7 +1,10 @@
 import { NavLink } from "react-router-dom";
-import logo from "../pages/Logo/Logo.png";
+import { useSelector } from "react-redux";
 
 export function Footer() {
+  let isLoggedIn = useSelector((state) => state.user.userInfo.loggedIn);
+  console.log(isLoggedIn);
+
   return (
     <div className="bg-gray-800 p-4 flex flex-row justify-between items-center">
       <div className="flex space-around">
@@ -13,8 +16,11 @@ export function Footer() {
           Map
         </NavLink>
 
-        <NavLink to="/" className="text-white hover:text-gray-400 mx-7">
-          Login or Account
+        <NavLink
+          to={isLoggedIn ? "/account" : "/"}
+          className="text-white hover:text-gray-400 mx-7"
+        >
+          {isLoggedIn ? "Account" : "Login"}
         </NavLink>
       </div>
 

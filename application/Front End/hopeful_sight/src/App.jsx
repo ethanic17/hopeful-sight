@@ -14,18 +14,22 @@ import { useEffect } from "react";
 import useAxiosWithToken from "./hooks/axios";
 import { useDispatch } from "react-redux";
 import { login } from "./app/features/userSlice";
+import { setLoading } from "./app/features/appSlice";
 
 function App() {
   const dispatch = useDispatch();
   let axiosInter = useAxiosWithToken();
   async function FetchInitialUser() {
     try {
+      dispatch(setLoading(true));
       let resp = await axiosInter.get("/auth/users/me/");
       if (resp.status == 200) {
         dispatch(login(resp.data));
       }
     } catch (e) {
       console.log("cant login");
+    } finally {
+      dispatch(setLoading(false));
     }
   }
 

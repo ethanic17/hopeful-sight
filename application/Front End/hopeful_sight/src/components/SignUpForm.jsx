@@ -2,36 +2,33 @@ import { FormBody } from "./FormBody";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { useState } from "react";
-import useAxiosWithToken, { axiosInstance as axios } from "../hooks/axios";
+import { axiosDefault as axios } from "../hooks/axios";
 import { useDispatch } from "react-redux";
-import { setAuth } from "../app/features/userSlice";
+import { setAuth, login } from "../app/features/userSlice";
 
 export function SignUpForm({ setHasAccount }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(false);
-  const axiosInter = useAxiosWithToken();
   const dispatch = useDispatch();
 
   async function handleSignUp(e) {
     e.preventDefault();
     try {
       setLoading(true);
-
       let creationResp = await axios.post("/auth/users/", {
         username: username,
         email: email,
         password: password,
       });
-
-      console.log("Creation Resp: " + creationResp);
       if (creationResp.status === 201) {
-        let logInToken = await axiosInter.post("/auth/token/login/", {
+        let logInToken = await axios.post("/auth/token/login/", {
           username: username,
           password: password,
         });
         dispatch(setAuth(logInToken.data.auth_token));
+        dispatch(login({ username: username, email: email, name: "" }));
       }
     } catch (e) {
       console.log(e);

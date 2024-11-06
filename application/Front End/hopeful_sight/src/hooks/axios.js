@@ -11,6 +11,12 @@ export const axiosInstance = axios.create({
   withCredentials: true,
 });
 
+export const axiosDefault = axios.create({
+  baseURL: baseUrl,
+  headers: { "Content-Type": "application/json" },
+  withCredentials: true,
+});
+
 export function useAxiosWithToken() {
   const dispatch = useDispatch();
   const token = useSelector((state) => state.user.token);
@@ -18,10 +24,8 @@ export function useAxiosWithToken() {
   useEffect(() => {
     const requestInterceptor = axiosInstance.interceptors.request.use(
       (config) => {
-        console.log("request");
         if (!config.headers.Authorization) {
           config.headers.Authorization = `Token ${token}`;
-          console.log("Auth: ", config.headers.Authorization);
         }
         return config;
       },
@@ -40,7 +44,6 @@ export function useAxiosWithToken() {
         ) {
           prevRequest.sent = true;
           const newAccessToken = await refresh();
-          console.log("New access token: ", newAccessToken);
           prevRequest.headers["Authorization"] = `Token ${newAccessToken}`;
           dispatch(setAuth(newAccessToken));
           return axiosInstance(prevRequest);
@@ -62,6 +65,5 @@ export default useAxiosWithToken;
 
 async function refresh() {
   const getInitialToken = () => localStorage.getItem("token") || "";
-  console.log("New token: ", getInitialToken());
   return getInitialToken();
 }
