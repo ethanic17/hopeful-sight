@@ -47,7 +47,7 @@ const regions = [
   { name: "Southwest", position: [35.1983, -111.6513], donationCount: 1200 },
   { name: "Midwest", position: [39.7684, -86.1581], donationCount: 2000 },
   { name: "Southeast", position: [29.9511, -90.0715], donationCount: 1800 },
-  { name: "Northeast", position: [40.7128, -74.006], donationCount: 2200 },
+  { name: "Northeast", position: [40.7128, -74.0060], donationCount: 2200 },
 ];
 
 /**
@@ -57,12 +57,12 @@ const regions = [
  */
 export function MapCard() {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden">
+    <div className="bg-white p-4 rounded-lg w-3/5 h-[530px] shadow-md mx-auto">
       <MapContainer
+        style={{ height: "500px" }}
         center={center}
         zoom={4}
         scrollWheelZoom={false}
-        style={{ height: "600px", width: "100%" }}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
