@@ -99,7 +99,6 @@ export function Requester({
       if (setParentData) {
         setParentData("");
       }
-      console.log("Request failed:", e);
       setStatus(e?.response?.status || e?.code);
       setData(e?.response?.data || "");
       setShowInfo(true);

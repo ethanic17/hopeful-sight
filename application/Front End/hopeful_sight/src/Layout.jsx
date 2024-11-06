@@ -1,7 +1,8 @@
 import { Outlet } from "react-router-dom";
 import { Header } from "./components/Header";
 import { Footer } from "./components/Footer";
-import logo from "./pages/Logo/hopefulsightlogo.png";
+import { useSelector } from "react-redux";
+import { GlobalLoader } from "./components/GlobalLoader";
 
 /**
  * Layout component for the application, providing a consistent structure with header, main content area, and footer
@@ -13,10 +14,12 @@ import logo from "./pages/Logo/hopefulsightlogo.png";
  */
 
 export function Layout() {
+  let loading = useSelector((state) => state.app.loading);
   return (
     <div className="grid h-dvh grid-rows-[auto_1fr]">
       <Header />
-      <main className="min-h-full overflow-auto">
+      <main className="overflow-auto">
+        {loading && <GlobalLoader />}
         <Outlet />
         <Footer />
       </main>
