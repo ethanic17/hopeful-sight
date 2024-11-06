@@ -121,7 +121,7 @@ export let glasses = [
   },
   {
     glasses_id: 12,
-    name: "test",
+    name: "Classic Wayfarer",
     size: 9,
     color: "red",
     perscription_range_upper: 0,
@@ -129,24 +129,26 @@ export let glasses = [
     img: "src/pages/glassesImages/glass3image.png",
 
     inventory: 22,
-    description: "test",
+    description: "Iconic wayfarer style that never goes out of fashion",
   },
   {
     glasses_id: 14,
-    name: "test",
+    name: "Bans RF1243",
     size: 9,
     color: "red",
     perscription_range_upper: 0,
     perscription_range_lower: 0,
     img: "src/pages/glassesImages/glass3image.png",
+    description: "Iconic wayfarer style that never goes out of fashion",
 
     inventory: 22,
-    description: "test",
   },
   {
     glasses_id: 11,
     name: "Ray Bans RF1243 Aviator 2",
     price: "$150",
     img: "src/pages/glassesImages/glass3image.png",
+    description: "Iconic wayfarer style that never goes out of fashion",
+    size: 50,
   },
 ];
