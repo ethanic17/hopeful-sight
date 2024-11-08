@@ -30,8 +30,10 @@ export function SignInForm({ setHasAccount }) {
       let userResp = await axiosInter.get("/auth/users/me/");
       if (userResp.status == 200) {
         dispatch(login(userResp.data));
+        console.log(userResp.data);
         navigate("/account");
       }
+
       setLoading(false);
     } catch (e) {
       console.log(e);

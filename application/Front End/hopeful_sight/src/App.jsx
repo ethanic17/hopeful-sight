@@ -13,14 +13,15 @@ import Confirmation from "./pages/Confirmation";
 import { useEffect } from "react";
 import useAxiosWithToken from "./hooks/axios";
 import { useDispatch } from "react-redux";
-import { addAccountID, login } from "./app/features/userSlice";
+import { login } from "./app/features/userSlice";
 import { setLoading } from "./app/features/appSlice";
 import { useSelector } from "react-redux";
 
 function App() {
   let accountId = useSelector((state) => {
-    return state.user.userInfo.accountId;
+    return state.user.userInfo;
   });
+  console.log(accountId);
 
   const dispatch = useDispatch();
   let axiosInter = useAxiosWithToken();
@@ -32,27 +33,12 @@ function App() {
       if (resp.status == 200) {
         dispatch(login(resp.data));
         console.log(resp.data);
-        dispatch(addAccountID(localStorage.getItem("account_id") || ""));
       }
-      await fetchAccount();
     } catch (e) {
       console.log("cant login");
     } finally {
       dispatch(setLoading(false));
     }
-  }
-  async function fetchAccount() {
-    if (!accountId) return;
-    console.log("FetchUserType");
-    let resp = await axiosInter(`/api/accounts/${accountId}/`);
-    console.log(resp);
-  }
-
-  async function fetchAccountType() {
-    if (!accountId) return;
-    console.log("FetchUserType");
-    let resp = await axiosInter(`/api/accounts/${accountId}/`);
-    console.log(resp);
   }
 
   useEffect(() => {

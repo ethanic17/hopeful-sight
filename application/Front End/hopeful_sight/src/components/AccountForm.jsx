@@ -4,12 +4,8 @@ import { Input } from "./Input";
 import { useState } from "react";
 import useAxiosWithToken from "../hooks/axios";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import {
-  addAccountID,
-  addAccountType,
-  addAccountTypeID,
-} from "../app/features/userSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { editAccount } from "../app/features/userSlice";
 
 export function AccountForm({ accountType, setStep, userID }) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -21,26 +17,30 @@ export function AccountForm({ accountType, setStep, userID }) {
   const axiosInter = useAxiosWithToken();
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.l;
+  const accountId = useSelector((state) => {
+    return state.user.userInfo.account.account_id;
+  });
+  const user = useSelector((state) => {
+    return state.user.userInfo.userId;
+  });
   async function submitForm(e) {
     e.preventDefault();
     setLoading(true);
-    let resp = await axiosInter.post("/api/accounts/", {
+    let resp = await axiosInter.patch(`/api/accounts/${accountId}/`, {
       phone_number: phoneNumber,
       address: address,
       city: city,
       state: state,
       zip_code: zipCode,
-      user: userID,
+      user: user,
     });
-    if (resp.status === 201) {
+    if (resp.status === 200) {
       console.log(resp.data);
-      dispatch(addAccountID(resp.data.account_id));
+      dispatch(editAccount(resp.data));
       if (accountType === "donatee") {
         setStep((state) => state + 1);
       } else {
-        dispatch(addAccountType(accountType));
-        await createDonator(resp.data.account_id);
+        // await createDonator(resp.data.account_id);
         navigate("/account");
       }
     }
@@ -48,15 +48,19 @@ export function AccountForm({ accountType, setStep, userID }) {
     setLoading(false);
   }
 
-  async function createDonator(id) {
-    let resp = await axiosInter.post("/api/donators/", {
-      has_donated: false,
-      total_amount_donated: 0,
-      account: id,
-    });
-    console.log(resp);
-    dispatch(addAccountTypeID(resp.donator_id));
-  }
+  // async function createDonator(id) {
+  //   try {
+  //     let resp = await axiosInter.patch("/api/donators/{donator_id}/", {
+  //       has_donated: false,
+  //       total_amount_donated: 0,
+  //       account: id,
+  //     });
+  //     console.log(resp);
+  //     dispatch(addAccountTypeID(resp.donator_id));
+  //   } catch (e) {
+  //     console.log(e);
+  //   }
+  // }
 
   return (
     <FormBody>

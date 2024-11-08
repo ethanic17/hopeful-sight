@@ -15,13 +15,18 @@
  * @returns {JSX.Element} A JSX element representing the glasses card
  * @example <GlassesCard data={glasses[i]} />
  */
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../test_data/cartData";
+import { useSelector } from "react-redux";
 
 export function GlassesCard({ onClick, loggedIn, data }) {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
+
+  let isLoggedIn = useSelector((state) => state.user.userInfo.loggedIn);
+  let isDonator = useSelector((state) => state.user.userInfo.donator);
+  console.log(isLoggedIn, isDonator);
 
   // const handleAddToCart = () => {
   //   if (loggedIn) {
@@ -54,7 +59,7 @@ export function GlassesCard({ onClick, loggedIn, data }) {
         onClick={onClick}
         className="w-full mt-4 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
       >
-        {!loggedIn ? "Sign In" : "Add to Cart"}
+        {!loggedIn ? "Sign In" : isDonator ? "Donate" : "Claim"}
       </button>
     </div>
   );

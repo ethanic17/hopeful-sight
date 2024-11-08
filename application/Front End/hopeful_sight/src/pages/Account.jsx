@@ -1,122 +1,52 @@
-import { testAccount as account } from "../test_data/testAccount";
 import { useSelector } from "react-redux";
+import { DonateeAccount } from "../components/DonateeAccount";
+import { DonatorAccount } from "../components/DonatorAccount";
 
 export function Account() {
-  const amountDonated = useSelector(
-    (state) => state.user.userInfo.amountDonated,
-  );
+  const user = useSelector((state) => state.user.userInfo);
+  const { username, email, account, donator: isDonator } = user;
+  const { phone_number, address, city, state, zip_code, donator, donatee } =
+    account;
+  console.log(user);
   return (
-    <p>
-      <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-bold mb-4">Account Details</h1>
-        <div className="bg-white shadow-md rounded-lg p-6">
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="account_id"
-            >
-              Account ID
-            </label>
-            <input
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              id="account_id"
-              value={account.account_id}
-              readOnly
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="phone_number"
-            >
-              Phone Number
-            </label>
-            <input
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              id="phone_number"
-              value={account.phone_number}
-              readOnly
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="address"
-            >
-              Address
-            </label>
-            <input
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              id="address"
-              value={account.address}
-              readOnly
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="city"
-            >
-              City
-            </label>
-            <input
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              id="city"
-              value={account.city}
-              readOnly
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="state"
-            >
-              State
-            </label>
-            <input
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              id="state"
-              value={account.state}
-              readOnly
-            />
-          </div>
-          <div className="mb-4">
-            <label
-              className="block text-gray-700 font-bold mb-2"
-              htmlFor="zip_code"
-            >
-              Zip Code
-            </label>
-            <input
-              className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-              type="text"
-              id="zip_code"
-              value={account.zip_code}
-              readOnly
-            />
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 font-bold mb-2"
-                htmlFor="amount_donated"
-              >
-                Amount Donated
-              </label>
-              <input
-                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                type="text"
-                id="amount_donated"
-                value={amountDonated}
-                readOnly
-              />
-            </div>
-          </div>
+    <div className="bg-gray-100 shadow-lg rounded-lg p-8 max-w-4xl mx-auto my-6 h-full">
+      <h2 className="text-3xl font-bold text-darkblue-700 mb-6 text-center">
+        User Account Information
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* User Info */}
+        <div>
+          <h3 className="text-xl font-semibold text-darkblue-600 mb-4">
+            User Details
+          </h3>
+          <p className="text-lg text-black">
+            <span className="font-medium">Username:</span> {username}
+          </p>
+          <p className="text-lg text-black">
+            <span className="font-medium">Email:</span> {email}
+          </p>
         </div>
+
+        {/* Account Info */}
+        <div>
+          <h3 className="text-xl font-semibold text-darkblue-600 mb-4">
+            Account Details
+          </h3>
+          <p className="text-black">
+            <span className="font-medium">Phone:</span> {phone_number}
+          </p>
+          <p className="text-black">
+            <span className="font-medium">Address:</span> {address}, {city},{" "}
+            {state}, {zip_code}
+          </p>
+        </div>
+        {isDonator ? (
+          <DonatorAccount donator={donator} />
+        ) : (
+          <DonateeAccount donatee={donatee} />
+        )}
       </div>
-    </p>
+    </div>
   );
 }

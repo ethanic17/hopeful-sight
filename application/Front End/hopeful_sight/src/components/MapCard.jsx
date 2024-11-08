@@ -47,7 +47,7 @@ const regions = [
   { name: "Southwest", position: [35.1983, -111.6513], donationCount: 1200 },
   { name: "Midwest", position: [39.7684, -86.1581], donationCount: 2000 },
   { name: "Southeast", position: [29.9511, -90.0715], donationCount: 1800 },
-  { name: "Northeast", position: [40.7128, -74.0060], donationCount: 2200 },
+  { name: "Northeast", position: [40.7128, -74.006], donationCount: 2200 },
 ];
 
 /**
@@ -61,7 +61,7 @@ export function MapCard() {
       <MapContainer
         style={{ height: "500px" }}
         center={center}
-        zoom={4}
+        zoom={3}
         scrollWheelZoom={false}
       >
         <TileLayer
