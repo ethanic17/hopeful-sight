@@ -12,3 +12,4 @@ class DonatorViewSet(viewsets.ModelViewSet):
     queryset = Donator.objects.all()
     serializer_class = DonatorSerializer
     permission_classes = [permissions.IsAuthenticated]
+    

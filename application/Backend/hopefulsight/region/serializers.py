@@ -4,4 +4,4 @@ from .models import Region
 class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
-        fields = ['id', 'name', 'description', 'country']
+        fields = ['id', 'name', 'description', 'country', 'total_donation']
