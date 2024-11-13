@@ -4,30 +4,48 @@ import { Input } from "./Input";
 import { Button } from "./Button";
 import useAxiosWithToken from "../hooks/axios";
 import { useDispatch } from "react-redux";
-import { addAccountType } from "../app/features/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { editAccount } from "../App/features/userSlice";
 
 export function DonateeForm() {
   const [monthlyIncome, setMonthlyIncome] = useState("");
   const [houseHold, setHouseHold] = useState("");
   const [bankBalance, setBankBalance] = useState("");
   const [isDependent, setIsDependent] = useState(false);
+  const diapatch = useDispatch();
   const [file, setFile] = useState(null);
+
+  let account = useSelector((state) => {
+    return state.user.userInfo.account;
+  });
+
   const axios = useAxiosWithToken();
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+
   async function submitDonatorForm(e) {
-    e.preventDefault(monthlyIncome, houseHold, bankBalance, isDependent);
-    let resp = await axios.post("/api/donatees/", {
-      has_applied_for_account: true,
-      has_claimed: false,
-      monthly_income: monthlyIncome,
-      average_household_income: houseHold,
-      current_bank_ballance: bankBalance,
-      is_dependent: isDependent,
-    });
-    dispatch(addAccountType("donatee"));
-    navigate("/account");
+    try {
+      e.preventDefault(monthlyIncome, houseHold, bankBalance, isDependent);
+      let resp = await axios.patch(
+        `/api/donatees/${account.donatee.donatee_id}/`,
+        {
+          has_applied_for_account: true,
+          has_claimed: false,
+          monthly_income: monthlyIncome,
+          average_household_income: houseHold,
+          current_bank_ballance: bankBalance,
+          is_dependent: isDependent,
+          account: account.account_id,
+        },
+      );
+      const newAcc = { ...account };
+      newAcc.donatee = resp.data;
+      console.log(newAcc);
+      diapatch(editAccount(newAcc));
+      navigate("/account");
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (

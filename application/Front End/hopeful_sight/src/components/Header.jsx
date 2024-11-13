@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 
 export function Header() {
   let isLoggedIn = useSelector((state) => state.user.userInfo.loggedIn);
+  let isDonator = useSelector((state) => state.user.userInfo.donator);
+  console.log(isLoggedIn, isDonator);
 
   return (
     <div className="bg-gray-800 p-4">
@@ -24,9 +26,15 @@ export function Header() {
           Map
         </NavLink>
 
-        <NavLink to="donate" className="text-white hover:text-gray-400 mx-7">
-          Donate
-        </NavLink>
+        {isLoggedIn && !isDonator ? (
+          <NavLink to="account" className="text-white hover:text-gray-400 mx-7">
+            Account
+          </NavLink>
+        ) : (
+          <NavLink to="donate" className="text-white hover:text-gray-400 mx-7">
+            Donate
+          </NavLink>
+        )}
       </div>
     </div>
   );

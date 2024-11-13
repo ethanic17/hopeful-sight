@@ -2,7 +2,7 @@ import { FormBody } from "./FormBody";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { useState } from "react";
-import { axiosDefault as axios } from "../hooks/axios";
+import { useAxiosWithToken, axiosDefault as axios } from "../hooks/axios";
 import { useDispatch } from "react-redux";
 import { setAuth, login } from "../app/features/userSlice";
 import { AccountForm } from "./AccountForm";
@@ -16,7 +16,7 @@ export function SignUpForm({ setHasAccount }) {
   const [loading, setLoading] = useState(false);
   const [accountType, setAccountType] = useState("none");
   const [userId, setUserID] = useState(null);
-
+  const axiosInter = useAxiosWithToken();
   const dispatch = useDispatch();
 
   async function handleSignUp(e) {
@@ -35,13 +35,30 @@ export function SignUpForm({ setHasAccount }) {
           password: password,
         });
         dispatch(setAuth(logInToken.data.auth_token));
-        dispatch(login({ username: username, email: email, name: "" }));
+        let me = await getme();
+        dispatch(
+          login({
+            username: username,
+            email: email,
+            id: me.id,
+            account: me.account,
+          }),
+        );
       }
       setStep(step + 1);
     } catch (e) {
       console.log(e);
     } finally {
       setLoading(false);
+    }
+  }
+
+  async function getme() {
+    try {
+      let me = await axiosInter.get("/auth/users/me/");
+      return me.data;
+    } catch (e) {
+      console.log(e);
     }
   }
 
