@@ -6,7 +6,7 @@ export let glasses = [
     color: "Black",
     perscription_range_upper: 2,
     perscription_range_lower: -4,
-    img: "src/pages/glassesImages/glass3image.png",
+    img: "src/pages/glassesImages/VisionProClassic.jpeg",
 
     inventory: 25,
     description: "A timeless design that suits all face shapes.",
@@ -18,7 +18,7 @@ export let glasses = [
     color: "Gold",
     perscription_range_upper: 1.5,
     perscription_range_lower: -3.5,
-    img: "src/pages/glassesImages/glass3image.png",
+    img: "src/pages/glassesImages/Aviator.jpeg",
 
     inventory: 15,
     description: "Stylish aviator glasses that enhance your look.",
@@ -30,7 +30,7 @@ export let glasses = [
     color: "Clear",
     perscription_range_upper: 1,
     perscription_range_lower: 3,
-    img: "src/pages/glassesImages/glass3image.png",
+    img: "src/pages/glassesImages/reader.jpeg",
 
     inventory: 40,
     description: "Lightweight readers perfect for daily use.",
@@ -42,7 +42,7 @@ export let glasses = [
     color: "Blue",
     perscription_range_upper: 2.5,
     perscription_range_lower: -2,
-    img: "src/pages/glassesImages/glass3image.png",
+    img: "src/pages/glassesImages/sporty.jpeg",
 
     inventory: 20,
     description: "Designed for active lifestyles with full coverage.",
@@ -54,7 +54,7 @@ export let glasses = [
     color: "Tortoise",
     perscription_range_upper: 2,
     perscription_range_lower: -5,
-    img: "src/pages/glassesImages/glass3image.png",
+    img: "src/pages/glassesImages/vintageRound.png",
 
     inventory: 30,
     description: "Retro round frames for a classic look.",
@@ -66,7 +66,7 @@ export let glasses = [
     color: "Silver",
     perscription_range_upper: 1.75,
     perscription_range_lower: -6,
-    img: "src/pages/glassesImages/glass3image.png",
+    img: "src/pages/glassesImages/rectangle.jpeg",
 
     inventory: 18,
     description: "Modern rectangular frames for a professional appearance.",
@@ -78,7 +78,7 @@ export let glasses = [
     color: "Red",
     perscription_range_upper: 2,
     perscription_range_lower: -2.5,
-    img: "src/pages/glassesImages/glass3image.png",
+    img: "src/pages/glassesImages/cateye.jpeg",
 
     inventory: 12,
     description: "Trendy cat-eye frames that make a bold statement.",
@@ -90,7 +90,7 @@ export let glasses = [
     color: "Natural",
     perscription_range_upper: 1,
     perscription_range_lower: -3,
-    img: "src/pages/glassesImages/glass3image.png",
+    img: "src/pages/glassesImages/bamboo.jpeg",
 
     inventory: 22,
     description: "Sustainable bamboo frames for the environmentally conscious.",

@@ -6,7 +6,7 @@ import useAxiosWithToken from "../hooks/axios";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { editAccount } from "../App/features/userSlice";
+import { editAccount } from "../app/features/userSlice";
 
 export function DonateeForm() {
   const [monthlyIncome, setMonthlyIncome] = useState("");
