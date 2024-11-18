@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GlassesCard } from "../components/GlassesCard";
 import { Overlay } from "../components/Overlay";
 import { glasses } from "../test_data/glasses";
@@ -10,31 +10,24 @@ export function Home() {
   const [show, setShow] = useState(false);
   const loggedIn = useSelector((state) => state.user.userInfo.loggedIn);
   const navigate = useNavigate();
-  function handleCardClick() {
-    if (!loggedIn) {
-      setShow(true);
-    } else {
-      navigate("/donate/form");
-    }
-  }
 
   return (
     <div className="bg-blue-50 p-4 min-h-screen flex flex-col items-center">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 border border-red-500">
+        {/* This is for debugging guys */}
         {glasses.map((value, index) => (
           <GlassesCard
-            loggedIn={loggedIn}
-            onClick={handleCardClick}
             key={value.glasses_id || index}
             data={value}
+            onClick={() => setShow(!loggedIn)}
           />
         ))}
-        {show && (
-          <Overlay setShow={setShow}>
-            <AuthForm />
-          </Overlay>
-        )}
       </div>
+      {show && (
+        <Overlay setShow={setShow}>
+          <AuthForm setShow={setShow} />
+        </Overlay>
+      )}
     </div>
   );
 }

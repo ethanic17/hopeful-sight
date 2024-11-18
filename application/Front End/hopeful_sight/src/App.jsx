@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { login } from "./app/features/userSlice";
 import { setLoading } from "./app/features/appSlice";
 import { useSelector } from "react-redux";
+import { GlassesDetailPage } from "./pages/glassesDetailPage";
 
 function App() {
   let accountId = useSelector((state) => {
@@ -62,6 +63,8 @@ function App() {
             <Route path="donate" element={<Donate />} />
             <Route path="donate/form" element={<DonationForm />} />
             <Route path="confirmation" element={<Confirmation />} />
+            {/* Glasses card id ( multiple values ) */}
+            <Route path="/glasses/:id" element={<GlassesDetailPage />} />
           </Route>
         </Routes>
       </CartProvider>
