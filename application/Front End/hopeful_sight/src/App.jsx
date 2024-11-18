@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import { Home } from "./pages/Home";
 import { Account } from "./pages/Account";
 import { MapPage } from "./pages/Map";
@@ -13,10 +13,11 @@ import Confirmation from "./pages/Confirmation";
 import { useEffect } from "react";
 import useAxiosWithToken from "./hooks/axios";
 import { useDispatch } from "react-redux";
-import { login } from "./app/features/userSlice";
+import { login, setAuth } from "./app/features/userSlice";
 import { setLoading } from "./app/features/appSlice";
 import { useSelector } from "react-redux";
 import { GlassesDetailPage } from "./pages/glassesDetailPage";
+import { SignInForm } from "./components/SignInForm";
 
 function App() {
   let accountId = useSelector((state) => {
@@ -36,7 +37,7 @@ function App() {
         console.log(resp.data);
       }
     } catch (e) {
-      console.log("cant login");
+      console.log("Can't login", e);
     } finally {
       dispatch(setLoading(false));
     }
@@ -53,7 +54,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="/donate" element={<Donate />} />
-            <Route path="home" element={<Home />} />
+            <Route path="home" element={<Navigate to="/" replace />} />
             <Route path="map" element={<MapPage />} />
             <Route path="account" element={<Account />} />
             <Route path="about" element={<AboutUs />} />
@@ -61,10 +62,12 @@ function App() {
             <Route path="routes" element={<RoutesTest />} />
             {/* Donation Flow Routes */}
             <Route path="donate" element={<Donate />} />
-            <Route path="donate/form" element={<DonationForm />} />
+            <Route path="/donate/form" element={<DonationForm />} />
             <Route path="confirmation" element={<Confirmation />} />
-            {/* Glasses card id ( multiple values ) */}
+            {/* Glasses card id */}
             <Route path="/glasses/:id" element={<GlassesDetailPage />} />
+            {/* Login Route */}
+            <Route path="/login" element={<SignInForm />} />
           </Route>
         </Routes>
       </CartProvider>

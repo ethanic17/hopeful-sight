@@ -1,15 +1,16 @@
 import { useContext } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { CartContext } from "../test_data/cartData";
 
 export function GlassesCard({ onClick, data }) {
   const { addToCart } = useContext(CartContext);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.userInfo.loggedIn);
   const isDonator = useSelector((state) => state.user.userInfo.donator);
 
-  // Adjust the onClick handler to navigate to detail page
+  // Navigating to detail page or /donate/form
   const handleCardClick = () => {
     if (data && data.glasses_id) {
       navigate(`/glasses/${data.glasses_id}`);
@@ -23,12 +24,13 @@ export function GlassesCard({ onClick, data }) {
       addToCart(data);
       navigate("/cart");
     } else {
-      navigate("/login");
+      // Redirecting to the donation form page
+      navigate("/donate/form");
     }
   };
 
-  // Default image URL for fallback
-  const defaultImage = "path/to/default-image.jpg"; // Replace with your actual default image path
+  // The constant image we are using
+  const defaultImage = "path/to/default-image.jpg";
 
   return (
     <div
@@ -36,15 +38,14 @@ export function GlassesCard({ onClick, data }) {
       className="flex flex-col w-full h-[500px] bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:shadow-xl hover:scale-102"
     >
       <div className="flex-shrink-0 w-full h-[250px] mb-4 bg-gray-200">
-        {" "}
-        {/* Placeholder background */}
         <img
           src={data.img || data.imageUrl || defaultImage}
           alt={data.name || "Glasses"}
           className="object-cover w-full h-full rounded-lg"
           onError={(e) => {
             e.target.onerror = null;
-            e.target.src = defaultImage; // Set to a default image if the original source fails
+            // Using e.target.src error handler to debug the image if it doesn't load
+            e.target.src = defaultImage;
           }}
         />
       </div>

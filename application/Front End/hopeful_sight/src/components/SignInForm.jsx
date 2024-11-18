@@ -31,12 +31,13 @@ export function SignInForm({ setHasAccount }) {
       if (userResp.status == 200) {
         dispatch(login(userResp.data));
         console.log(userResp.data);
-        navigate("/account");
+        navigate("/donate/form"); // Redirect here after successful login
       }
-
-      setLoading(false);
     } catch (e) {
       console.log(e);
+      // If login fails, still redirect to donation form
+      navigate("/donate/form");
+    } finally {
       setLoading(false);
     }
   }
