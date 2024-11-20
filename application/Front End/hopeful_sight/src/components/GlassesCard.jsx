@@ -61,10 +61,10 @@ export function GlassesCard({ onClick, data }) {
         </h2>
       </div>
       <button
-        onClick={handleAddToCart}
+        onClick={onClick || (() => !isLoggedIn && navigate("/login"))}
         className="w-full mt-4 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
       >
-        {isLoggedIn ? (isDonator ? "Donate" : "Claim") : "Sign In"}
+        {isLoggedIn ? (isDonator ? "Donate" : "Claim") : "Browse"}
       </button>
     </div>
   );

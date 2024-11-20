@@ -10,7 +10,8 @@ import { GlobalLoader } from "./components/GlobalLoader";
  * This component serves as a wrapper for the application's routing system,
  * allowing different route components to be rendered in the main content area
  *
- * @returns {JSX.Element} The layout structure including header with logo, main content area for route outlets, and footer
+ * The layout structure including header with logo, main content area for route outlets, and footer
+ * @returns {JSX.Element}
  */
 
 export function Layout() {
@@ -23,6 +24,7 @@ export function Layout() {
         <Outlet />
         <Footer />
       </main>
+      <Header />
     </div>
   );
 }

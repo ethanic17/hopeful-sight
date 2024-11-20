@@ -18,6 +18,7 @@ import { setLoading } from "./app/features/appSlice";
 import { useSelector } from "react-redux";
 import { GlassesDetailPage } from "./pages/glassesDetailPage";
 import { SignInForm } from "./components/SignInForm";
+import { AuthForm } from "./components/AuthForm";
 
 function App() {
   let accountId = useSelector((state) => {
@@ -68,6 +69,8 @@ function App() {
             <Route path="/glasses/:id" element={<GlassesDetailPage />} />
             {/* Login Route */}
             <Route path="/login" element={<SignInForm />} />
+            {/*  AuthForm should handle both sign in and sign up */}
+            <Route path="login" element={<AuthForm />} />
           </Route>
         </Routes>
       </CartProvider>
