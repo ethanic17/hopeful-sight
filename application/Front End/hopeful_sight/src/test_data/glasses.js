@@ -1,13 +1,12 @@
 // Import rhe images directly for the other images .
 import VisionProClassic from '../pages/glassesImages/VisionProClassic.jpeg';
 import Aviator from '../pages/glassesImages/Aviator.jpeg';
-// import Reader from '../pages/glassesImages/reader.jpeg';
-// import Sporty from '../pages/glassesImages/sporty.jpeg';
-// import VintageRound from '../pages/glassesImages/vintageRound.png';
-// import Rectangle from '../pages/glassesImages/rectangle.jpeg';
-// import CatEye from '../pages/glassesImages/cateye.jpeg';
-// import Bamboo from '../pages/glassesImages/bamboo.jpeg';
-// images will be implemented later
+import Reader from '../pages/glassesImages/reader.jpeg';
+import Sporty from '../pages/glassesImages/sporty.jpeg';
+import VintageRound from '../pages/glassesImages/vintageRound.png';
+import Rectangle from '../pages/glassesImages/rectangle.jpeg';
+import CatEye from '../pages/glassesImages/cateye.jpeg';
+import Bamboo from '../pages/glassesImages/bamboo.jpeg';
 import Glass3Image from '../pages/glassesImages/glass3image.png';
 
 // Using a default image for all glasses
@@ -36,7 +35,6 @@ export const glasses = [
     inventory: 15,
     description: "Stylish aviator glasses that enhance your look.",
   },
-  // ... similar entries for other glasses with unique images
   {
     glasses_id: 9,
     name: "AdventureSport Goggles",
@@ -44,7 +42,7 @@ export const glasses = [
     color: "Neon green",
     perscription_range_upper: 3,
     perscription_range_lower: -5,
-    img: Glass3Image,
+    img: Reader,
     inventory: 10,
     description: "Durable goggles designed for outdoor sports and activities.",
   },
@@ -66,7 +64,7 @@ export const glasses = [
     color: "red",
     perscription_range_upper: 0,
     perscription_range_lower: 0,
-    img: Glass3Image,
+    img: Sporty,
     inventory: 22,
     description: "Iconic wayfarer style that never goes out of fashion",
   },
@@ -77,7 +75,7 @@ export const glasses = [
     color: "red",
     perscription_range_upper: 0,
     perscription_range_lower: 0,
-    img: Glass3Image,
+    img: VintageRound,
     description: "Iconic wayfarer style that never goes out of fashion",
     inventory: 22,
   },
@@ -85,7 +83,7 @@ export const glasses = [
     glasses_id: 13,
     name: "Ray Bans RF1243 Aviator 2",
     price: "$150",
-    img: Glass3Image,
+    img: Rectangle,
     description: "Iconic wayfarer style that never goes out of fashion",
     size: 50,
   },
@@ -94,7 +92,7 @@ export const glasses = [
     glasses_id: 13,
     name: "Ray Bans RF1243 Aviator 3",
     price: "$150",
-    img: Glass3Image,
+    img: Bamboo,
     description: "The best glasses in the world",
     size: 50,
   },
@@ -110,7 +108,7 @@ export const glasses = [
     glasses_id: 15,
     name: "Ray Bans RF1243 Aviator 3",
     price: "$150",
-    img: Glass3Image,
+    img: CatEye,
     description: "The best glasses in the world",
     size: 50,
   }
