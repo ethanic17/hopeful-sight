@@ -5,9 +5,15 @@ import { SignUpForm } from "./SignUpForm";
 export function AuthForm() {
   const [hasAccount, setHasAccount] = useState(true);
 
-  return hasAccount ? (
-    <SignInForm setHasAccount={setHasAccount} />
-  ) : (
-    <SignUpForm setHasAccount={setHasAccount} />
+  return (
+    <div className="w-full h-full flex justify-center items-center">
+      <div className="w-1/2">
+        {hasAccount ? (
+          <SignInForm setHasAccount={setHasAccount} />
+        ) : (
+          <SignUpForm setHasAccount={setHasAccount} />
+        )}
+      </div>
+    </div>
   );
 }

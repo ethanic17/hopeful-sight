@@ -1,45 +1,37 @@
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
 
-import { Button } from "./Button";
 import { FormBody } from "./FormBody";
-import { Input } from "./Input";
-import { useNavigate } from "react-router-dom";
-import useAxiosWithToken from "../hooks/axios";
+import { PaymentForm } from "./PaymentForm";
+import { DonationAmount } from "./DonationAmount";
+import { DonationConfirm } from "./DonationConfirm";
 
-export function DonationForm() {
-  const [donationAmount, setDonationAmount] = useState("");
-  const axiosInter = useAxiosWithToken();
-  const dispatch = useDispatch();
-  const user = useSelector((state) => {
-    return state.user.userInfo;
-  });
-  console.log(user);
-  const navigate = useNavigate();
-
-  const handleDonation = async (e) => {
-    e.preventDefault();
-    await axiosInter.post("/api/donation/", {
-      amount: donationAmount,
-      date: new Date().toISOString().substring(0, 10),
-      region: 1,
-      donator: user.account.donator.donator_id,
-    });
-    navigate("/");
-  };
+export function DonationForm({ currentGasses }) {
+  const [step, setStep] = useState(0);
 
   return (
-    <FormBody>
-      <h3 className="text-center mb-4 text-lg font-semibold">
-        Enter an amount to donate
-      </h3>
-      <Input
-        type="number"
-        placeholder="Enter donation amount"
-        state={donationAmount}
-        setState={setDonationAmount}
-      />
-      <Button onClick={handleDonation}>Donate</Button>
-    </FormBody>
+    <div className="flex h-full items-center justify-center bg-gray-100 p-10 space-x-10">
+      <div className="w-1/2 bg-gradient-to-br from-sky-400 to-blue-600 text-white p-10 rounded-xl shadow-lg hover:shadow-2xl">
+        <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+          🌟 Transform Lives with the Gift of Sight
+        </h2>
+        <p className="text-lg leading-relaxed mb-6">
+          Over <strong>800 million people</strong> lack access to glasses,
+          limiting their ability to learn, work, and thrive. With{" "}
+          <strong>any amount you’re able to give</strong>, you can provide
+          someone with the gift of clear sight, unlocking a brighter future for
+          themselves and their community.
+        </p>
+        <em className="block text-base font-medium">
+          Your support changes lives—one lens at a time. ❤️
+        </em>
+      </div>
+      <div className="w-1/2">
+        <FormBody>
+          {step == 0 && <PaymentForm setStep={setStep} />}
+          {step == 1 && <DonationAmount setStep={setStep} />}
+          {step == 2 && <DonationConfirm />}
+        </FormBody>
+      </div>
+    </div>
   );
 }

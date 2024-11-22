@@ -1,6 +1,7 @@
 import { FormBody } from "./FormBody";
 import { Button } from "./Button";
 import { Input } from "./Input";
+import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useState } from "react";
 import { axiosDefault, useAxiosWithToken } from "../hooks/axios";
 import { useDispatch } from "react-redux";
@@ -11,6 +12,7 @@ import { setAuth } from "../app/features/userSlice";
 export function SignInForm({ setHasAccount }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const axiosInter = useAxiosWithToken();
   const dispatch = useDispatch();
@@ -19,6 +21,9 @@ export function SignInForm({ setHasAccount }) {
   async function handleSignIn(e) {
     try {
       e.preventDefault();
+      if (!username || !password) {
+        setMessage("All Fields Are Required.");
+      }
       setLoading(true);
       let tokenResp = await axiosDefault.post("/auth/token/login/", {
         password: password,
@@ -35,8 +40,6 @@ export function SignInForm({ setHasAccount }) {
       }
     } catch (e) {
       console.log(e);
-      // If login fails, still redirect to donation form
-      navigate("/donate/form");
     } finally {
       setLoading(false);
     }
@@ -45,17 +48,33 @@ export function SignInForm({ setHasAccount }) {
   return (
     <FormBody>
       <h3 className="text-5xl font-semibold text-slate-800">Welcome Back</h3>
-      <Input
-        placeholder="Enter you email"
-        state={username}
-        setState={setUsername}
-      />
-      <Input
-        type="password"
-        placeholder="....."
-        state={password}
-        setState={setPassword}
-      />
+      <div className="w-1/2">
+        <Input
+          label="Email address"
+          type="email"
+          value={username}
+          setValue={(val) => {
+            setMessage("");
+            setUsername(val);
+          }}
+          required
+          icon={FaEnvelope}
+          className="text-lg"
+        />
+        <Input
+          label="Password"
+          type="password"
+          value={password}
+          setValue={(val) => {
+            setMessage("");
+            setPassword(val);
+          }}
+          icon={FaLock}
+          required
+          className="text-lg"
+        />
+      </div>
+      {message && <p className="text-red-600 text-xs">{message}</p>}
       <Button onClick={handleSignIn}>
         {loading ? "Loading..." : "Sign In"}
       </Button>

@@ -21,10 +21,13 @@ export function Layout() {
       <Header />
       <main className="overflow-auto">
         {loading && <GlobalLoader />}
-        <Outlet />
-        <Footer />
+        {!loading && (
+          <>
+            <Outlet />
+            <Footer />
+          </>
+        )}
       </main>
-      <Header />
     </div>
   );
 }
