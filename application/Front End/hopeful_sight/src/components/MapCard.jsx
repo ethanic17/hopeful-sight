@@ -38,16 +38,12 @@ L.Marker.prototype.options.icon = DefaultIcon;
  */
 const center = [39.8283, -98.5795];
 
-/**
- * Array of region objects with their geographic positions and donation counts
- * @type {Array<{name: string, position: Array<number>, donationCount: number}>}
- */
 const regions = [
-  { name: "West", position: [37.7749, -122.4194], donationCount: 1500 },
-  { name: "Southwest", position: [35.1983, -111.6513], donationCount: 1200 },
-  { name: "Midwest", position: [39.7684, -86.1581], donationCount: 2000 },
-  { name: "Southeast", position: [29.9511, -90.0715], donationCount: 1800 },
-  { name: "Northeast", position: [40.7128, -74.006], donationCount: 2200 },
+  { name: "West", position: [37.7749, -122.4194] },
+  { name: "Southwest", position: [35.1983, -111.6513] },
+  { name: "Midwest", position: [39.7684, -86.1581] },
+  { name: "Southeast", position: [29.9511, -90.0715] },
+  { name: "Northeast", position: [40.7128, -74.006] },
 ];
 
 /**
@@ -55,9 +51,9 @@ const regions = [
  *
  * @returns {React.ReactElement} JSX element for rendering the map container with markers
  */
-export function MapCard() {
+export function MapCard({ setFocusRegion, className }) {
   return (
-    <div className="bg-white p-4 rounded-lg w-3/5 h-[530px] shadow-md mx-auto">
+    <div className={`w-full h-full ${className}`}>
       <MapContainer
         style={{ height: "500px" }}
         center={center}
@@ -69,10 +65,33 @@ export function MapCard() {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {regions.map((region, index) => (
-          <Marker key={index} position={region.position}>
-            <Popup>
-              {region.name} Donation Count: <br />
-              <span className="font-bold">{region.donationCount}</span>
+          <Marker
+            key={index}
+            position={region.position}
+            eventHandlers={{
+              click: () => {
+                setFocusRegion(region.name);
+              },
+            }}
+          >
+            <Popup
+              eventHandlers={{
+                remove: () => {
+                  setFocusRegion(null);
+                },
+              }}
+            >
+              <div>
+                <p className="text-lg font-semibold text-gray-800">
+                  {region.name}
+                </p>
+                {/* <p className="text-sm text-gray-600 mt-2">
+                  <span className="font-bold text-blue-600">
+                    {region.donationCount}
+                  </span>{" "}
+                  Donations
+                </p> */}
+              </div>
             </Popup>
           </Marker>
         ))}

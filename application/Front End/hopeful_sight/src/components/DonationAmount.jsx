@@ -71,7 +71,7 @@ export function DonationAmount({ setStep }) {
         Support The Cause. Donate Now. 🌟
       </h3>
 
-      <div className="mb-6">
+      <div className="my-4">
         <h4 className="text-xl font-semibold text-gray-800 mb-3">
           Quick Donation Amounts
         </h4>

@@ -10,7 +10,7 @@ export function PaymentForm({ setStep }) {
   return (
     <>
       <div className="w-2/3">
-        <h1 className="text-center mb-4 text-2xl font-light">
+        <h1 className="text-center mb-6 text-4xl font-extrabold bg-gradient-to-r from-sky-500 to-sky-600 bg-clip-text text-transparent">
           Support Hopeful Sight by Donating
         </h1>
 

@@ -5,7 +5,14 @@ import { useState } from "react";
 import useAxiosWithToken from "../hooks/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { editAccount } from "../app/features/userSlice";
+import { editAccount, setAccountType } from "../app/features/userSlice";
+import {
+  FaHome,
+  FaPhoneAlt,
+  FaCompass,
+  FaGlobeAmericas,
+  FaMapPin,
+} from "react-icons/fa";
 
 export function AccountForm({ accountType, setStep, userID }) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -17,9 +24,11 @@ export function AccountForm({ accountType, setStep, userID }) {
   const axiosInter = useAxiosWithToken();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const accountId = useSelector((state) => {
     return state.user.userInfo.account.account_id;
   });
+
   const user = useSelector((state) => {
     return state.user.userInfo.userId;
   });
@@ -37,82 +46,99 @@ export function AccountForm({ accountType, setStep, userID }) {
     if (resp.status === 200) {
       console.log(resp.data);
       dispatch(editAccount(resp.data));
+      dispatch(setAccountType(accountType));
       if (accountType === "donatee") {
         setStep((state) => state + 1);
       } else {
-        // await createDonator(resp.data.account_id);
-        navigate("/account");
+        navigate("/donate/form");
       }
     }
 
     setLoading(false);
   }
 
-  // async function createDonator(id) {
-  //   try {
-  //     let resp = await axiosInter.patch("/api/donators/{donator_id}/", {
-  //       has_donated: false,
-  //       total_amount_donated: 0,
-  //       account: id,
-  //     });
-  //     console.log(resp);
-  //     dispatch(addAccountTypeID(resp.donator_id));
-  //   } catch (e) {
-  //     console.log(e);
-  //   }
-  // }
-
   return (
     <FormBody>
-      <div className="flex space-x-2">
-        <div className="h-4 w-4 rounded-full bg-blue-800"></div>
-        <div className="h-4 w-4 rounded-full bg-blue-800"></div>
-        {accountType == "donatee" && (
-          <div className="h-4 w-4 rounded-full bg-gray-800"></div>
-        )}
+      <div>
+        <h3 className="text-2xl font-bold mb-6 text-center text-sky-700">
+          Some More Information for the {accountType}
+        </h3>
+        <div className="flex justify-center items-center space-x-2 mb-6">
+          <div className="h-4 w-4 rounded-full bg-sky-500"></div>
+          <div className="h-4 w-4 rounded-full bg-sky-500"></div>
+          {accountType === "donatee" && (
+            <div className="h-4 w-4 rounded-full bg-sky-800"></div>
+          )}
+        </div>
+        <div className="w-full max-w-lg mx-auto space-y-5">
+          <Input
+            title="Phone Number"
+            label="Phone Number"
+            value={phoneNumber}
+            setValue={setPhoneNumber}
+            placeholder="Enter your phone number"
+            type="text"
+            icon={FaPhoneAlt}
+          />
+          <Input
+            title="Address"
+            label="Address"
+            value={address}
+            setValue={setAddress}
+            placeholder="Enter your address"
+            type="text"
+            icon={FaHome}
+          />
+          <Input
+            title="City"
+            label="City"
+            value={city}
+            setValue={setCity}
+            placeholder="Enter your city"
+            type="text"
+            icon={FaCompass}
+          />
+          <Input
+            title="State"
+            label="State"
+            value={state}
+            setValue={setState}
+            placeholder="Enter your state"
+            type="text"
+            icon={FaGlobeAmericas}
+          />
+          <Input
+            title="Zip Code"
+            label="Zip Code"
+            value={zipCode}
+            setValue={setZipCode}
+            placeholder="Enter your zip code"
+            type="text"
+            icon={FaMapPin}
+          />
+        </div>
+        <div className="mt-6 flex flex-col items-center space-y-4">
+          <Button
+            className="bg-sky-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-sky-600 focus:outline-none focus:ring-2 focus:ring-sky-400 transition"
+            onClick={submitForm}
+          >
+            {loading
+              ? "Loading..."
+              : accountType == "donatee"
+                ? "Next"
+                : "Submit"}
+          </Button>
+          <p
+            className="text-sky-600 underline cursor-pointer hover:text-sky-800 transition self-start"
+            onClick={(e) => {
+              e.preventDefault();
+              setStep((state) => state - 1);
+            }}
+          >
+            Back
+          </p>
+        </div>
       </div>
-      <div className="flex flex-col space-y-4 w-full">
-        <Input
-          state={phoneNumber}
-          setState={setPhoneNumber}
-          placeholder="Phone Number"
-          type="text"
-        />
-
-        <Input
-          state={address}
-          setState={setAddress}
-          placeholder="Address"
-          type="text"
-        />
-
-        <Input state={city} setState={setCity} placeholder="City" type="text" />
-
-        <Input
-          state={state}
-          setState={setState}
-          placeholder="State"
-          type="text"
-        />
-
-        <Input
-          state={zipCode}
-          setState={setZipCode}
-          placeholder="Zip Code"
-          type="text"
-        />
-      </div>
-
-      <Button onClick={submitForm}>{loading ? "Loading..." : "Submit"}</Button>
-      <p
-        className="w-full"
-        onClick={(e) => {
-          e.preventDefault();
-          setStep((state) => state - 1);
-        }}
-      >
-        Back
-      </p>
     </FormBody>
   );
 }

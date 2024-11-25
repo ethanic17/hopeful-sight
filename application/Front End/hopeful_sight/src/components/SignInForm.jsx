@@ -36,8 +36,8 @@ export function SignInForm({ setHasAccount }) {
       if (userResp.status == 200) {
         dispatch(login(userResp.data));
         console.log(userResp.data);
-        navigate("/donate/form"); // Redirect here after successful login
       }
+      navigate("/account");
     } catch (e) {
       console.log(e);
     } finally {
@@ -48,10 +48,11 @@ export function SignInForm({ setHasAccount }) {
   return (
     <FormBody>
       <h3 className="text-5xl font-semibold text-slate-800">Welcome Back</h3>
-      <div className="w-1/2">
+      <div className="w-2/3">
         <Input
-          label="Email address"
-          type="email"
+          label="username"
+          title={"username"}
+          type="text"
           value={username}
           setValue={(val) => {
             setMessage("");

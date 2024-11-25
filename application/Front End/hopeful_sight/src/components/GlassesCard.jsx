@@ -65,12 +65,10 @@ export function GlassesCard({ onClick, data }) {
           Frame Width: {data.size ? `${data.size}mm` : "Not specified"}
         </h2>
         <button
-          onClick={onClick}
+          onClick={onClick.bind(this, data)}
           className="w-full mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white p-2 rounded-lg hover:from-blue-600 hover:to-blue-800 transition-colors duration-300"
         >
-          {isDonator || !isLoggedIn
-            ? "Support with a Donation"
-            : "Claim Your Glasses"}
+          {isDonator || !isLoggedIn ? "Donate" : "Claim"}
         </button>
       </div>
     </div>

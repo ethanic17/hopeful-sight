@@ -25,10 +25,18 @@ const userSlice = createSlice({
       state.userInfo.username = action.payload.username;
       state.userInfo.email = action.payload.email;
       state.userInfo.account = action.payload.account;
-      if (state.userInfo.account.donatee.has_applied_for_account) {
-        state.userInfo.donator = false;
-      } else {
+      if (!state.userInfo.account.donatee.has_applied_for_account) {
         state.userInfo.donator = true;
+      } else {
+        state.userInfo.donator = false;
+      }
+    },
+    setAccountType: (state, action) => {
+      console.log("setAccountType: " + action.payload);
+      if (action.payload == "donator") {
+        state.userInfo.donator = true;
+      } else {
+        state.userInfo.donator = false;
       }
     },
     editAccount: (state, action) => {
@@ -37,6 +45,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setAuth, login, editAccount } = userSlice.actions;
+export const { setAuth, login, editAccount, setAccountType } =
+  userSlice.actions;
 
 export default userSlice.reducer;

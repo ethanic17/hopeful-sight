@@ -10,9 +10,9 @@ export function DonationForm({ currentGasses }) {
 
   return (
     <div className="flex h-full items-center justify-center bg-gray-100 p-10 space-x-10">
-      <div className="w-1/2 bg-gradient-to-br from-sky-400 to-blue-600 text-white p-10 rounded-xl shadow-lg hover:shadow-2xl">
+      <div className="w-1/2 bg-gradient-to-br from-sky-600 to-blue-900 text-white p-10 rounded-xl shadow-lg hover:shadow-2xl">
         <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          🌟 Transform Lives with the Gift of Sight
+          Transform Lives with the Gift of Sight
         </h2>
         <p className="text-lg leading-relaxed mb-6">
           Over <strong>800 million people</strong> lack access to glasses,
