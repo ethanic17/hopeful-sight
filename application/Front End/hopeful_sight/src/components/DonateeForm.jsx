@@ -15,6 +15,7 @@ export function DonateeForm() {
   const [isDependent, setIsDependent] = useState(false);
   const diapatch = useDispatch();
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   let account = useSelector((state) => {
     return state.user.userInfo.account;
@@ -25,7 +26,8 @@ export function DonateeForm() {
 
   async function submitDonatorForm(e) {
     try {
-      e.preventDefault(monthlyIncome, houseHold, bankBalance, isDependent);
+      setLoading(true);
+      e.preventDefault();
       let resp = await axios.patch(
         `/api/donatees/${account.donatee.donatee_id}/`,
         {
@@ -45,57 +47,86 @@ export function DonateeForm() {
       navigate("/account");
     } catch (e) {
       console.log(e);
+    } finally {
+      setLoading(false);
     }
   }
 
   return (
     <FormBody>
-      <div className="flex space-x-2">
-        <div className="h-4 w-4 rounded-full bg-blue-800"></div>
-        <div className="h-4 w-4 rounded-full bg-blue-800"></div>
-        <div className="h-4 w-4 rounded-full bg-blue-800"></div>
+      <div className="flex justify-center items-center space-x-2">
+        <div className="h-4 w-4 rounded-full bg-sky-500"></div>
+        <div className="h-4 w-4 rounded-full bg-sky-500"></div>
+        <div className="h-4 w-4 rounded-full bg-sky-500"></div>
       </div>
       <h3 className="text-4xl font-bold mb-4">Donatee Form</h3>
-      <Input
-        type="number"
-        placeholder="Monthly Income"
-        state={monthlyIncome}
-        setState={setMonthlyIncome}
-      />
-      <Input
-        type="number"
-        placeholder="Household Income"
-        state={houseHold}
-        setState={setHouseHold}
-      />
-      <Input
-        type="number"
-        placeholder="Bank Balance Income"
-        state={bankBalance}
-        setState={setBankBalance}
-      />
+      <div className="w-2/3">
+        <Input
+          label="Monthly Income"
+          title="Monthly Income"
+          type="number"
+          placeholder="Monthly Income"
+          value={monthlyIncome}
+          setValue={setMonthlyIncome}
+          required
+        />
+        <Input
+          type="number"
+          label="Household Income"
+          title="Household Income"
+          placeholder="Household Income"
+          value={houseHold}
+          setValue={setHouseHold}
+          required
+        />
+        <Input
+          type="number"
+          label="Current Bank Balance"
+          title="Current Bank Balance"
+          placeholder="Current Balance Income"
+          value={bankBalance}
+          setValue={setBankBalance}
+          required
+        />
 
-      <Input
-        label="Are you a dependent?"
-        className={"h-fit w-5"}
-        type="radio"
-        placeholder="Bank Balance Income"
-        state={isDependent}
-        options={[
-          { label: "Yes", value: true },
-          { label: "No", value: false },
-        ]}
-        setState={() => {
-          setIsDependent(!isDependent);
-        }}
-      />
-      <div>
-        <p className="font-bold text-md flex justify-center pb-3">
-          Upload a picture of your percription
-        </p>
-        <Input type="file" setState={setFile} />
+        <div className="flex flex-col space-y-4 mb-4">
+          <label className="text-lg font-medium">Are you a dependent?</label>
+          <div className="flex space-x-6 w-full">
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="isDependent"
+                value="true"
+                checked={isDependent === true}
+                onChange={() => setIsDependent(true)}
+                className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+              />
+              <span className="text-sm font-medium">Yes</span>
+            </label>
+            <label className="flex items-center space-x-2">
+              <input
+                type="radio"
+                name="isDependent"
+                value="false"
+                checked={isDependent === false}
+                onChange={() => setIsDependent(false)}
+                className="w-5 h-5 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 focus:ring-2"
+              />
+              <span className="text-sm font-medium">No</span>
+            </label>
+          </div>
+        </div>
+
+        <div>
+          <p className="font-bold text-md flex justify-center pb-3">
+            Upload a picture of your percription
+          </p>
+          <input type="file" onChange={setFile} />
+        </div>
       </div>
-      <Button onClick={submitDonatorForm}>Submit</Button>
+      <Button onClick={submitDonatorForm}>
+        {loading ? "Loading..." : "Submit"}
+      </Button>
     </FormBody>
   );
 }

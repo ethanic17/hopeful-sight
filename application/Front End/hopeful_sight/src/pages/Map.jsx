@@ -1,19 +1,23 @@
 import { MapCard } from "../components/MapCard";
 import { DonationStatsPanel } from "../components/DonationStatsPanel";
+import { useState } from "react";
 // import L from 'leaflet';
 
 export function MapPage() {
+  const [focusRegion, setFocusRegion] = useState(null);
   return (
     <div className="bg-blue-50 min-h-screen flex flex-col items-center p-4">
       <h1 className="text-3xl font-bold mb-6 text-center">
         Donations by Region
       </h1>
-      <div className="flex flex-col md:flex-row gap-4 w-full max-w-6xl">
-        <div className="flex-grow">
-          <MapCard />
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full max-w-6xl">
+        <div className="flex-grow bg-white p-2 shadow-lg rounded-lg">
+          <MapCard setFocusRegion={setFocusRegion} />
         </div>
-        <div className="w-full md:w-1/3">
-          <DonationStatsPanel />
+
+        <div className="flex-grow bg-white shadow-lg rounded-lg p-4">
+          <DonationStatsPanel focusRegion={focusRegion} />
         </div>
       </div>
     </div>

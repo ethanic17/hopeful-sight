@@ -7,7 +7,6 @@ import { Cart } from "./pages/Cart";
 import { RoutesTest } from "./pages/RoutesTests";
 import { Layout } from "./Layout";
 import { CartProvider } from "./test_data/cartData";
-import Donate from "./pages/Donate";
 import DonationForm from "./pages/DonationForm";
 import Confirmation from "./pages/Confirmation";
 import { useEffect } from "react";
@@ -54,7 +53,6 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
-            <Route path="/donate" element={<Donate />} />
             <Route path="home" element={<Navigate to="/" replace />} />
             <Route path="map" element={<MapPage />} />
             <Route path="account" element={<Account />} />
@@ -62,7 +60,6 @@ function App() {
             <Route path="cart" element={<Cart />} />
             <Route path="routes" element={<RoutesTest />} />
             {/* Donation Flow Routes */}
-            <Route path="donate" element={<Donate />} />
             <Route path="/donate/form" element={<DonationForm />} />
             <Route path="confirmation" element={<Confirmation />} />
             {/* Glasses card id */}

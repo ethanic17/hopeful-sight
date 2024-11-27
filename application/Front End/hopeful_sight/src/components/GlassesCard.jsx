@@ -1,71 +1,76 @@
-import { useContext } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
-import { CartContext } from "../test_data/cartData";
+import { RiAlarmFill, RiFireFill } from "react-icons/ri";
+import { useSelector } from "react-redux";
+
+function getImgPath(isLoggedIn, url) {
+  if (isLoggedIn) {
+    return url.replace(import.meta.env.VITE_URL, "/src/pages/glassesImages/");
+  }
+  return url;
+}
 
 export function GlassesCard({ onClick, data }) {
-  const { addToCart } = useContext(CartContext);
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
   const isLoggedIn = useSelector((state) => state.user.userInfo.loggedIn);
   const isDonator = useSelector((state) => state.user.userInfo.donator);
 
-  // Navigating to detail page or /donate/form
-  const handleCardClick = () => {
-    if (data && data.glasses_id) {
-      navigate(`/glasses/${data.glasses_id}`);
-    } else {
-      console.warn("Glasses ID is missing or data is undefined");
-    }
-  };
-
-  const handleAddToCart = () => {
-    if (isLoggedIn) {
-      addToCart(data);
-      navigate("/cart");
-    } else {
-      // Redirecting to the donation form page
-      navigate("/donate/form");
-    }
-  };
-
-  // The constant image we are using
-  const defaultImage = "path/to/default-image.jpg";
-
   return (
-    <div
-      onClick={handleCardClick}
-      className="flex flex-col w-full h-[500px] bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:shadow-xl hover:scale-102"
-    >
-      <div className="flex-shrink-0 w-full h-[250px] mb-4 bg-gray-200">
+    <div className="relative flex flex-col w-full bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:shadow-xl hover:scale-102">
+      {!isDonator && data.inventory === 0 && (
+        <div className="h-full w-full bg-black/40 absolute top-0 left-0 rounded-lg flex items-center justify-center">
+          <p className="text-white font-bold text-lg">Out Of Stock</p>
+        </div>
+      )}
+      {data.inventory <= 10 && (
+        <div className="absolute top-2 cursor-default">
+          <div
+            className={`flex items-center space-x-2 py-1 px-2 rounded-full ${
+              isDonator || !isLoggedIn ? "bg-red-500" : "bg-orange-200"
+            }`}
+          >
+            {isDonator || !isLoggedIn ? (
+              <RiAlarmFill
+                color="fef2f2"
+                size="25"
+                className="animate-pulse duration-700"
+              />
+            ) : (
+              <RiFireFill color="rgb(124 45 18)" size="25" />
+            )}
+            <p
+              className={`text-sm ${
+                isDonator || !isLoggedIn ? "text-red-50" : "text-orange-900"
+              }`}
+            >
+              {isDonator || !isLoggedIn
+                ? "Needing Donation"
+                : "Popular – Running Low"}
+            </p>
+          </div>
+        </div>
+      )}
+      <div className="w-full flex justify-center mb-4 flex-1 h-20">
         <img
-          src={data.img || data.imageUrl || defaultImage}
-          alt={data.name || "Glasses"}
-          className="object-cover w-full h-full rounded-lg"
-          onError={(e) => {
-            e.target.onerror = null;
-            // Using e.target.src error handler to debug the image if it doesn't load
-            e.target.src = defaultImage;
-          }}
+          src={getImgPath(isLoggedIn, data.image)}
+          alt={data.name}
+          className="rounded-lg"
         />
       </div>
-      <div className="flex flex-col min-h-32">
-        <h1 className="text-2xl font-bold text-black line-clamp-1 mb-1">
-          {data.name || "No Name"}
+      <div className="flex flex-col justify-between min-h-32 flex-1 space-y-4">
+        <h1 className="text-2xl font-bold text-black">
+          {data.name || "Good Glasses"}
         </h1>
-        <h2 className="text-base text-blue-600 line-clamp-2 mb-2">
+        <h2 className="text-base text-blue-600 ">
           {data.description || "No description available"}
         </h2>
         <h2 className="text-sm text-gray-800">
           Frame Width: {data.size ? `${data.size}mm` : "Not specified"}
         </h2>
+        <button
+          onClick={onClick.bind(this, data)}
+          className="w-full mt-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white p-2 rounded-lg hover:from-blue-600 hover:to-blue-800 transition-colors duration-300"
+        >
+          {isDonator || !isLoggedIn ? "Donate" : "Claim"}
+        </button>
       </div>
-      <button
-        onClick={onClick || (() => !isLoggedIn && navigate("/login"))}
-        className="w-full mt-4 bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-700 transition-colors duration-300"
-      >
-        {isLoggedIn ? (isDonator ? "Donate" : "Claim") : "Browse"}
-      </button>
     </div>
   );
 }

@@ -1,43 +1,61 @@
-import { useEffect } from "react";
-import useAxiosWithToken from "../hooks/axios";
-
 export function DonateeAccount({ donatee }) {
   return (
-    <div className="md:col-span-2 border-t border-gray-300 pt-6">
-      <h3 className="text-xl font-semibold text-darkblue-600 mb-4">
-        Donatee Status
-      </h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <p className="text-black">
-          <span className="font-medium">Applied for Account:</span>{" "}
-          {donatee.has_applied_for_account ? "Yes" : "No"}
-        </p>
-        <p className="text-black">
-          <span className="font-medium">Claimed:</span>{" "}
-          {donatee.has_claimed ? "Yes" : "No"}
-        </p>
-        <p className="text-black">
-          <span className="font-medium">Monthly Income:</span> $
-          {donatee.monthly_income}
-        </p>
-        <p className="text-black">
-          <span className="font-medium">Avg Household Income:</span> $
-          {donatee.average_household_income}
-        </p>
-        <p className="text-gray-700">
-          <span className="font-medium">Current Bank Balance:</span>{" "}
-          {donatee.current_bank_balance
-            ? `$${donatee.current_bank_balance}`
-            : "N/A"}
-        </p>
-        <p className="text-gray-700">
-          <span className="font-medium">Dependent:</span>{" "}
-          {donatee.is_dependent ? "Yes" : "No"}
-        </p>
-        <p className="text-gray-700 col-span-2">
-          <span className="font-medium">Prescription:</span>{" "}
-          {donatee.prescription || "N/A"}
-        </p>
+    <div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-500">
+            Applied for Account
+          </span>
+          <span className="text-lg font-semibold text-gray-800">
+            {donatee.has_applied_for_account ? "Yes" : "No"}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-500">Claimed</span>
+          <span className="text-lg font-semibold text-gray-800">
+            {donatee.has_claimed ? "Yes" : "No"}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-500">
+            Monthly Income
+          </span>
+          <span className="text-lg font-semibold text-gray-800">
+            ${donatee.monthly_income || "N/A"}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-500">
+            Avg Household Income
+          </span>
+          <span className="text-lg font-semibold text-gray-800">
+            ${donatee.average_household_income || "N/A"}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-500">
+            Current Bank Balance
+          </span>
+          <span className="text-lg font-semibold text-gray-800">
+            {donatee.current_bank_balance
+              ? `$${donatee.current_bank_balance}`
+              : "N/A"}
+          </span>
+        </div>
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-500">Dependent</span>
+          <span className="text-lg font-semibold text-gray-800">
+            {donatee.is_dependent ? "Yes" : "No"}
+          </span>
+        </div>
+        <div className="flex flex-col sm:col-span-2 lg:col-span-3">
+          <span className="text-sm font-medium text-gray-500">
+            Prescription
+          </span>
+          <span className="text-lg font-semibold text-gray-800">
+            {donatee.prescription || "N/A"}
+          </span>
+        </div>
       </div>
     </div>
   );

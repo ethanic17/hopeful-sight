@@ -1,54 +1,81 @@
+import { useState, useRef, useEffect } from "react";
+import { FaRegEyeSlash, FaRegEye } from "react-icons/fa6";
+
 export function Input({
   className,
-  state,
-  setState,
-  placeholder,
-  type = "text",
-  label = "",
-  options = [],
+  title,
+  label,
+  value,
+  setValue,
+  required,
+  type,
+  icon: Icon,
 }) {
+  const [isFocused, setIsFocused] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const inputRef = useRef(null);
+
+  const handleFocus = () => setIsFocused(true);
+  const handleBlur = () => setIsFocused(false);
+
+  useEffect(() => {
+    const handleFocusOut = (e) => {
+      if (inputRef.current && !inputRef.current.contains(e.target)) {
+        setIsFocused(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleFocusOut);
+    return () => {
+      document.removeEventListener("mousedown", handleFocusOut);
+    };
+  }, []);
+
   return (
-    <div className="w-full flex justify-center">
-      {label && <label htmlFor={label}>{label}</label>}
-      {type === "file" ? (
+    <div className="my-5 w-full">
+      <div className="relative" onClick={() => inputRef.current.focus()}>
+        <label
+          className={`absolute left-3 z-10 transition-all duration-200 ${
+            isFocused || value !== ""
+              ? "-top-5 text-xs bg-transparent px-1 text-blue-600"
+              : `top-3 text-gray-500  ${Icon ? "pl-10" : ""}`
+          }`}
+        >
+          {label}
+          {required && <span className="text-red-600 ml-1">*</span>}
+        </label>
         <div className="relative">
+          {Icon && (
+            <Icon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+          )}
           <input
-            id={label}
-            type={type}
-            className={`max-w-md py-3 px-4 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${className}`}
-            placeholder={placeholder}
-            onChange={(e) => setState(e.target.files[0])}
+            ref={inputRef}
+            type={type === "password" && !showPassword ? "password" : "text"}
+            value={value}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={(e) => setValue(e.target.value)}
+            required={required}
+            placeholder={isFocused ? title : ""}
+            className={`w-full align-center rounded-md border border-gray-300 py-2 px-3 pt-4 shadow-sm transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+              Icon ? "pl-10" : ""
+            } ${className}`}
           />
-          <span className="absolute right-0 top-0 mt-3 mr-3">
-            {state && state.name}
-          </span>
+          {type === "password" && (
+            <button
+              type="button"
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? (
+                <FaRegEyeSlash size={18} />
+              ) : (
+                <FaRegEye size={18} />
+              )}
+            </button>
+          )}
         </div>
-      ) : type === "radio" ? (
-        <div>
-          {options.map((option) => (
-            <label key={option.value} htmlFor={option.value}>
-              <input
-                id={option.value}
-                type={type}
-                className={`mr-2 ${className}`}
-                value={option.value}
-                checked={state === option.value}
-                onChange={(e) => setState(e.target.value)}
-              />
-              {option.label}
-            </label>
-          ))}
-        </div>
-      ) : (
-        <input
-          id={label}
-          type={type}
-          className={`max-w-md py-3 px-4 w-full rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent ${className}`}
-          placeholder={placeholder}
-          value={state}
-          onChange={(e) => setState(e.target.value)}
-        />
-      )}
+      </div>
     </div>
   );
 }
