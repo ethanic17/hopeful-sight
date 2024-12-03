@@ -19,8 +19,10 @@ export function GlassesCard({ onClick, data }) {
           <p className="text-white font-bold text-lg">Out Of Stock</p>
         </div>
       )}
+
+      {/* Show the alarm icon if the inventory is less than or equal to 10 */}
       {data.inventory <= 10 && (
-        <div className="absolute top-2 cursor-default">
+        <div className="absolute top-2 left-2">
           <div
             className={`flex items-center space-x-2 py-1 px-2 rounded-full ${
               isDonator || !isLoggedIn ? "bg-red-500" : "bg-orange-200"
@@ -47,6 +49,28 @@ export function GlassesCard({ onClick, data }) {
           </div>
         </div>
       )}
+
+      {/* Show the in stock icon if inventory is more than 0 */}
+      {data.inventory > 0 && (
+        <div className="absolute top-2 right-2">
+          <div
+            className={`flex items-center space-x-2 py-1 px-2 rounded-full ${
+              isDonator || !isLoggedIn ? "bg-green-500" : "bg-green-200"
+            }`}
+          >
+            <RiFireFill color="white" size="25" />
+            <p
+              className={`text-sm ${
+                isDonator || !isLoggedIn ? "text-green-50" : "text-green-900"
+              }`}
+            >
+              In Stock
+            </p>
+          </div>
+        </div>
+      )}
+
+      {/* Show the image of the glasses */}
       <div className="w-full flex justify-center mb-4 flex-1 h-20">
         <img
           src={getImgPath(isLoggedIn, data.image)}
@@ -58,7 +82,7 @@ export function GlassesCard({ onClick, data }) {
         <h1 className="text-2xl font-bold text-black">
           {data.name || "Good Glasses"}
         </h1>
-        <h2 className="text-base text-blue-600 ">
+        <h2 className="text-base text-blue-600">
           {data.description || "No description available"}
         </h2>
         <h2 className="text-sm text-gray-800">
