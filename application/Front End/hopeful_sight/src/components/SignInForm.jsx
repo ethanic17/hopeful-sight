@@ -50,8 +50,8 @@ export function SignInForm({ setHasAccount }) {
       <h3 className="text-5xl font-semibold text-slate-800">Welcome Back</h3>
       <div className="w-2/3">
         <Input
-          label="username"
-          title={"username"}
+          label="Username"
+          title={"Username"}
           type="text"
           value={username}
           setValue={(val) => {

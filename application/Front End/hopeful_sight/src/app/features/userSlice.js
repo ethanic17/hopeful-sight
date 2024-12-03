@@ -31,6 +31,7 @@ const userSlice = createSlice({
         state.userInfo.donator = false;
       }
     },
+
     setAccountType: (state, action) => {
       console.log("setAccountType: " + action.payload);
       if (action.payload == "donator") {

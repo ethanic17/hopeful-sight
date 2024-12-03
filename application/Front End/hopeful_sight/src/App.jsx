@@ -12,7 +12,7 @@ import Confirmation from "./pages/Confirmation";
 import { useEffect } from "react";
 import useAxiosWithToken from "./hooks/axios";
 import { useDispatch } from "react-redux";
-import { login, setAuth } from "./app/features/userSlice";
+import { login } from "./app/features/userSlice";
 import { setLoading } from "./app/features/appSlice";
 import { useSelector } from "react-redux";
 import { GlassesDetailPage } from "./pages/glassesDetailPage";
@@ -21,6 +21,7 @@ import { AuthForm } from "./components/AuthForm";
 
 function App() {
   let accountId = useSelector((state) => {
+    console.log(state);
     return state.user.userInfo;
   });
   console.log(accountId);
