@@ -35,6 +35,7 @@ export function Input({
     <div className="my-5 w-full">
       <div className="relative" onClick={() => inputRef.current.focus()}>
         <label
+          htmlFor={title}
           className={`absolute left-3 z-10 transition-all duration-200 ${
             isFocused || value !== ""
               ? "-top-5 text-xs bg-transparent px-1 text-blue-600"
@@ -49,6 +50,7 @@ export function Input({
             <Icon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           )}
           <input
+            id={title}
             ref={inputRef}
             type={type === "password" && !showPassword ? "password" : "text"}
             value={value}
