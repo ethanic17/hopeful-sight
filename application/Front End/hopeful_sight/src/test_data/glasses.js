@@ -146,8 +146,12 @@ export let glasses = [
   {
     glasses_id: 11,
     name: "Ray Bans RF1243 Aviator 2",
+    color: "red",
+    perscription_range_upper: 0,
+    perscription_range_lower: 0,
     price: "$150",
     img: "src/pages/glassesImages/glass3image.png",
+    imgSwitch: "src/pages/glassesImages/bamboo.jpeg",
     description: "Iconic wayfarer style that never goes out of fashion",
     size: 50,
   },

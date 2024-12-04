@@ -44,6 +44,7 @@ export function GlassesCard({ onClick, loggedIn, data }) {
           src={data.img || data.imageUrl}
           alt={data.name}
           className="object-cover w-full h-full rounded-lg bg-transparent"
+        
         />
       </div>
       <div className="flex flex-col min-h-32">
