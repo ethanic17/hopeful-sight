@@ -24,9 +24,13 @@ export function AboutUs() {
         <br />
         <div className="text-center text-4xl p-4 font-bold">Meet the Team</div>
 
+        <hr className="border-t-2 my-4 w-1/2 mx-auto border-blue-500" />
+
         <br />
+      
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          <div className="bg-white rounded-lg shadow-md ">
+        <a href="#">
+          <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={kobykern}
               alt="Koby Kern"
@@ -38,8 +42,10 @@ export function AboutUs() {
               <p className="mt-2">Team Leader</p>
             </div>
           </div>
+        </a>
 
-          <div className="bg-white rounded-lg shadow-md ">
+        <a href="#">
+          <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={nate}
               alt="nate"
@@ -51,8 +57,10 @@ export function AboutUs() {
               <p className="mt-2">Scrum Master</p>
             </div>
           </div>
+        </a>
 
-          <div className="bg-white rounded-lg shadow-md ">
+        <a href="#">
+          <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={miguel}
               alt="miguel"
@@ -64,8 +72,10 @@ export function AboutUs() {
               <p className="mt-2">Frontend Lead</p>
             </div>
           </div>
+        </a>
 
-          <div className="bg-white rounded-lg shadow-md ">
+        <a href="#">
+          <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={ali}
               alt="ali"
@@ -77,8 +87,10 @@ export function AboutUs() {
               <p className="mt-2">Front End</p>
             </div>
           </div>
+        </a>
 
-          <div className="bg-white rounded-lg shadow-md ">
+        <a href="#">
+          <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={jacob}
               alt="jacob"
@@ -90,8 +102,10 @@ export function AboutUs() {
               <p className="mt-2">Backend Lead</p>
             </div>
           </div>
+        </a>
 
-          <div className="bg-white rounded-lg shadow-md ">
+        <a href="#">
+          <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={zeke}
               alt="zeke"
@@ -103,8 +117,10 @@ export function AboutUs() {
               <p className="mt-2">Back End</p>
             </div>
           </div>
+        </a>
 
-          <div className="bg-white rounded-lg shadow-md ">
+        <a href="../../Personas/ZhengEthan.html">
+          <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={ethan}
               alt="ethan"
@@ -116,6 +132,8 @@ export function AboutUs() {
               <p className="mt-2">GitHub Master</p>
             </div>
           </div>
+        </a>
+
         </div>
 
         <br />
