@@ -2,7 +2,7 @@ import aboutphoto from "../pages/AboutUsImages/kidwithglasses.jpg";
 
 export function AboutUsInfo() {
   return (
-    <div className="bg-white p-4 rounded-lg w-3/5 h-[700px] shadow-md mx-auto">
+    <div className="bg-white p-4 rounded-lg w-3/5 h-[1200px] shadow-md mx-auto">
       <div>
         <img
           src={aboutphoto}

@@ -24,6 +24,8 @@ export function AboutUs() {
         <br />
         <div className="text-center text-4xl p-4 font-bold">Meet the Team</div>
 
+        <hr className="border-t-2 my-4 w-1/2 mx-auto border-blue-500" />
+
         <br />
       
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
