@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/76</span>
+                <span class='fraction'>0/100</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/76</span>
+                <span class='fraction'>0/100</span>
             </div>
         
             
@@ -139,7 +139,55 @@
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
 <a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a>
+<a name='L97'></a><a href='#L97'>97</a>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -236,8 +284,10 @@
 <span class="cstat-no" title="statement not covered" >          &lt;p className="text-white font-bold text-lg"&gt;Out Of Stock&lt;/p&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >      )}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      {/* Show the alarm icon if the inventory is less than or equal to 10 */}</span>
 <span class="cstat-no" title="statement not covered" >      {data.inventory &lt;= 10 &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;div className="absolute top-2 cursor-default"&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div className="absolute top-2 left-2"&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div</span>
 <span class="cstat-no" title="statement not covered" >            className={`flex items-center space-x-2 py-1 px-2 rounded-full ${</span>
 <span class="cstat-no" title="statement not covered" >              isDonator || !isLoggedIn ? "bg-red-500" : "bg-orange-200"</span>
@@ -264,6 +314,28 @@
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >      )}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      {/* Show the in stock icon if inventory is more than 0 */}</span>
+<span class="cstat-no" title="statement not covered" >      {data.inventory &gt; 0 &amp;&amp; (</span>
+<span class="cstat-no" title="statement not covered" >        &lt;div className="absolute top-2 right-2"&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;div</span>
+<span class="cstat-no" title="statement not covered" >            className={`flex items-center space-x-2 py-1 px-2 rounded-full ${</span>
+<span class="cstat-no" title="statement not covered" >              isDonator || !isLoggedIn ? "bg-green-500" : "bg-green-200"</span>
+<span class="cstat-no" title="statement not covered" >            }`}</span>
+<span class="cstat-no" title="statement not covered" >          &gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;RiFireFill color="white" size="25" /&gt;</span>
+<span class="cstat-no" title="statement not covered" >            &lt;p</span>
+<span class="cstat-no" title="statement not covered" >              className={`text-sm ${</span>
+<span class="cstat-no" title="statement not covered" >                isDonator || !isLoggedIn ? "text-green-50" : "text-green-900"</span>
+<span class="cstat-no" title="statement not covered" >              }`}</span>
+<span class="cstat-no" title="statement not covered" >            &gt;</span>
+<span class="cstat-no" title="statement not covered" >              In Stock</span>
+<span class="cstat-no" title="statement not covered" >            &lt;/p&gt;</span>
+<span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;/div&gt;</span>
+<span class="cstat-no" title="statement not covered" >      )}</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >      {/* Show the image of the glasses */}</span>
 <span class="cstat-no" title="statement not covered" >      &lt;div className="w-full flex justify-center mb-4 flex-1 h-20"&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;img</span>
 <span class="cstat-no" title="statement not covered" >          src={getImgPath(isLoggedIn, data.image)}</span>
@@ -275,7 +347,7 @@
 <span class="cstat-no" title="statement not covered" >        &lt;h1 className="text-2xl font-bold text-black"&gt;</span>
 <span class="cstat-no" title="statement not covered" >          {data.name || "Good Glasses"}</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/h1&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;h2 className="text-base text-blue-600 "&gt;</span>
+<span class="cstat-no" title="statement not covered" >        &lt;h2 className="text-base text-blue-600"&gt;</span>
 <span class="cstat-no" title="statement not covered" >          {data.description || "No description available"}</span>
 <span class="cstat-no" title="statement not covered" >        &lt;/h2&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;h2 className="text-sm text-gray-800"&gt;</span>
@@ -298,7 +370,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-03T19:38:40.590Z
+                at 2024-12-05T01:50:50.710Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

@@ -3,18 +3,8 @@ import * as d3 from "d3";
 
 export function DonationBarChart({ regions, donationsByRegion }) {
   const svgRef = useRef();
-  const [chartWidth, setChartWidth] = useState(500);
+  const chartWidth = 500;
   const chartHeight = 300;
-  useEffect(() => {
-    const handleResize = () => {
-      setChartWidth(window.innerWidth * 0.35);
-    };
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
 
   useEffect(() => {
     if (!regions || !donationsByRegion) return;

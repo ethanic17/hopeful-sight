@@ -9,11 +9,11 @@ import { AccountForm } from "./AccountForm";
 import { DonateeForm } from "./DonateeForm";
 import { FaEnvelope, FaLock, FaUser } from "react-icons/fa";
 
-export function SignUpForm({ setHasAccount }) {
+export function SignUpForm({ setHasAccount, testState = 0 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  const [step, setStep] = useState(0);
+  const [step, setStep] = useState(testState);
   const [loading, setLoading] = useState(false);
   const [accountType, setAccountType] = useState("none");
   const [userId, setUserID] = useState(null);
@@ -31,10 +31,12 @@ export function SignUpForm({ setHasAccount }) {
       });
       setUserID(creationResp.data.id);
       if (creationResp.status === 201) {
+        console.log("SSS:", creationResp.data);
         let logInToken = await axios.post("/auth/token/login/", {
           username: username,
           password: password,
         });
+        console.log("SSS2:", logInToken.data);
         dispatch(setAuth(logInToken.data.auth_token));
         let me = await getme();
         dispatch(
@@ -57,6 +59,7 @@ export function SignUpForm({ setHasAccount }) {
   async function getme() {
     try {
       let me = await axiosInter.get("/auth/users/me/");
+      console.log("SSS3:", me);
       return me.data;
     } catch (e) {
       console.log(e);
@@ -65,7 +68,6 @@ export function SignUpForm({ setHasAccount }) {
 
   switch (step) {
     case 0:
-      // user form (add to new component)
       return (
         <FormBody>
           <h3 className="text-5xl font-semibold text-slate-800">Get Started</h3>
@@ -104,7 +106,9 @@ export function SignUpForm({ setHasAccount }) {
             {loading ? "Loading..." : "Sign Up"}
           </Button>
           <div
-            onClick={() => setHasAccount((state) => !state)}
+            onClick={() => {
+              setHasAccount((state) => !state);
+            }}
             className="place-self-start text-sm text-blue-800 hover:text-blue-700 hover:underline cursor-pointer"
           >
             Already have an Account?

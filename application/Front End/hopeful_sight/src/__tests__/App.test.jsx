@@ -36,8 +36,7 @@ describe("App", () => {
       </Provider>,
     );
 
-    // Check that the Home page content is displayed
-    const homeContent = screen.getByText(/Donate/i); // Adjust this to match text in your Home component
+    const homeContent = screen.getByText(/Donate/i);
     expect(homeContent).toBeInTheDocument();
   });
 });

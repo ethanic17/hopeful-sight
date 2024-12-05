@@ -55,7 +55,7 @@ export function DonationStatsPanel({ focusRegion }) {
   const axiosInter = useAxiosWithToken();
   const [topDonators, setTopDonators] = useState([]);
   const [donation, setDonation] = useState(donations);
-  const [loading, setLoading] = useState(true); // Adding loading state for better UX
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function getDonations() {
