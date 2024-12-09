@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+
 import { Home } from "./pages/Home";
 import { Account } from "./pages/Account";
 import { MapPage } from "./pages/Map";
@@ -18,6 +19,14 @@ import { useSelector } from "react-redux";
 import { GlassesDetailPage } from "./pages/glassesDetailPage";
 import { SignInForm } from "./components/SignInForm";
 import { AuthForm } from "./components/AuthForm";
+
+import { ZhengEthan } from "./pages/AboutUsPages/ZhengEthan";
+import { NateDavid } from "./pages/AboutUsPages/NGD";
+import { KobyKern } from "./pages/AboutUsPages/KobyKern";
+import { JacobVazquez } from "./pages/AboutUsPages/JacobVazquez";
+import { MiguelMaurer } from "./pages/AboutUsPages/MiguelMaurer";
+import { AliAlmusawi } from "./pages/AboutUsPages/AliAlmusawi";
+import { ZekeMelo } from "./pages/AboutUsPages/ZekeMelo";
 
 function App() {
   let accountId = useSelector((state) => {
@@ -69,6 +78,14 @@ function App() {
             <Route path="/login" element={<SignInForm />} />
             {/*  AuthForm should handle both sign in and sign up */}
             <Route path="login" element={<AuthForm />} />
+
+            <Route path="ZhengEthan" element={<ZhengEthan />} />
+            <Route path="NateDavid" element={<NateDavid />} />
+            <Route path="KobyKern" element={<KobyKern />} />
+            <Route path="JacobVazquez" element={<JacobVazquez />} />
+            <Route path="MiguelMaurer" element={<MiguelMaurer />} />
+            <Route path="AliAlmusawi" element={<AliAlmusawi />} />
+            <Route path="ZekeMelo" element={<ZekeMelo />} />
           </Route>
         </Routes>
       </CartProvider>
