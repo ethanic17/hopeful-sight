@@ -1,6 +1,11 @@
-# CSC648-S04-FA24-03 Repository
+## Hopeful Sight 👓
+
+Hopeful Sight is a fictional non-profit organization that aims to provide eyeglasses to the less fortunate. 
+Created by a team of seven Computer Science students at San Francisco State University. 
 
 **Application URL: <https://csc648-04-sp24-csc648-fall24-team03-fork-rypq.vercel.app/>**
+
+**CSC 648 Fall 2024 Team #03**
 
 |     Student Name     |      Student Email      | GitHub Username | Student's role |
 | :------------------: | :---------------------: | :-------------: | :------------: |
@@ -12,6 +17,4 @@
 |    Miguel Maurer     |    mmaurer1@sfsu.edu    |  miguelCmaurer  | Frontend Lead  |
 |  Miguel (Zeke) Melo  |  mgaraldemleo@sfsu.edu  |  zekemelo2000   |     Intern     |
 
-**NO code should be stored in the root of your repository. You may rename the
-`application/` folder to your team's application name if you'd like, but all the
-source code should be stored inside that folder.**
+
