@@ -29,7 +29,7 @@ export function AboutUs() {
         <br />
       
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        <a href="#">
+        <a href="KobyKern" target="_blank">
           <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={kobykern}
@@ -44,7 +44,7 @@ export function AboutUs() {
           </div>
         </a>
 
-        <a href="#">
+        <a href="NateDavid" target="_blank">
           <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={nate}
@@ -59,7 +59,7 @@ export function AboutUs() {
           </div>
         </a>
 
-        <a href="#">
+        <a href="MiguelMaurer" target="_blank">
           <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={miguel}
@@ -74,7 +74,7 @@ export function AboutUs() {
           </div>
         </a>
 
-        <a href="#">
+        <a href="AliAlmusawi" target="_blank">
           <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={ali}
@@ -89,7 +89,7 @@ export function AboutUs() {
           </div>
         </a>
 
-        <a href="#">
+        <a href="JacobVazquez" target="_blank">
           <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={jacob}
@@ -104,7 +104,7 @@ export function AboutUs() {
           </div>
         </a>
 
-        <a href="#">
+        <a href="ZekeMelo" target="_blank">
           <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={zeke}
@@ -119,7 +119,7 @@ export function AboutUs() {
           </div>
         </a>
 
-        <a href="../../Personas/ZhengEthan.html">
+        <a href="ZhengEthan" target="_blank">
           <div className="bg-white rounded-lg shadow-md hover:bg-gray-300">
             <img
               src={ethan}
