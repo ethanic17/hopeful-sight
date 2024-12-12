@@ -2,7 +2,7 @@ import { FormBody } from "./FormBody";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { useState } from "react";
-import useAxiosWithToken from "../hooks/axios";
+import { useAxiosWithToken } from "../hooks/axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { editAccount, setAccountType } from "../app/features/userSlice";

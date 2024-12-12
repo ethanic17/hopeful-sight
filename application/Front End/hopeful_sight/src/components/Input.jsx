@@ -35,7 +35,7 @@ export function Input({
     <div className="my-5 w-full">
       <div className="relative" onClick={() => inputRef.current.focus()}>
         <label
-          htmlFor={title}
+          htmlFor={label.toLowerCase()}
           className={`absolute left-3 z-10 transition-all duration-200 ${
             isFocused || value !== ""
               ? "-top-5 text-xs bg-transparent px-1 text-blue-600"
@@ -50,7 +50,7 @@ export function Input({
             <Icon className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
           )}
           <input
-            id={title}
+            data-testid={label.toLowerCase()}
             ref={inputRef}
             type={type === "password" && !showPassword ? "password" : "text"}
             value={value}
@@ -59,7 +59,7 @@ export function Input({
             onChange={(e) => setValue(e.target.value)}
             required={required}
             placeholder={isFocused ? title : ""}
-            className={`w-full align-center rounded-md border border-gray-300 py-2 px-3 pt-4 shadow-sm transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${
+            className={`${label.toLowerCase()} w-full align-center rounded-md border border-gray-300 py-2 px-3 pt-4 shadow-sm transition-all duration-200 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500 ${
               Icon ? "pl-10" : ""
             } ${className}`}
           />

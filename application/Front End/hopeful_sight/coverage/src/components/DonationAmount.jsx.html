@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/156</span>
+                <span class='fraction'>0/160</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/156</span>
+                <span class='fraction'>0/160</span>
             </div>
         
             
@@ -219,7 +219,15 @@
 <a name='L154'></a><a href='#L154'>154</a>
 <a name='L155'></a><a href='#L155'>155</a>
 <a name='L156'></a><a href='#L156'>156</a>
-<a name='L157'></a><a href='#L157'>157</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -381,7 +389,7 @@
 <span class="cstat-no" title="statement not covered" >import { Button } from "./Button";</span>
 <span class="cstat-no" title="statement not covered" >import { Input } from "./Input";</span>
 <span class="cstat-no" title="statement not covered" >import { useNavigate } from "react-router-dom";</span>
-<span class="cstat-no" title="statement not covered" >import useAxiosWithToken from "../hooks/axios";</span>
+<span class="cstat-no" title="statement not covered" >import { useAxiosWithToken } from "../hooks/axios";</span>
 <span class="cstat-no" title="statement not covered" ></span>
 <span class="cstat-no" title="statement not covered" >const regions = [</span>
 <span class="cstat-no" title="statement not covered" >  { name: "West", id: 1 },</span>
@@ -436,6 +444,7 @@
 <span class="cstat-no" title="statement not covered" >      console.log(resp);</span>
 <span class="cstat-no" title="statement not covered" >      setStep((state) =&gt; state + 1);</span>
 <span class="cstat-no" title="statement not covered" >    } catch (error) {</span>
+<span class="cstat-no" title="statement not covered" >      console.log("SSS: ", error);</span>
 <span class="cstat-no" title="statement not covered" >      setErrorMessage("Something went wrong. Please try again.");</span>
 <span class="cstat-no" title="statement not covered" >    } finally {</span>
 <span class="cstat-no" title="statement not covered" >      setIsLoading(false);</span>
@@ -454,6 +463,7 @@
 <span class="cstat-no" title="statement not covered" >        &lt;/h4&gt;</span>
 <span class="cstat-no" title="statement not covered" >        &lt;div className="flex justify-between space-x-4 text-sky-500 text-center "&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div</span>
+<span class="cstat-no" title="statement not covered" >            data-testid="$10"</span>
 <span class="cstat-no" title="statement not covered" >            className={`${selection == 1 &amp;&amp; "bg-sky-500 text-white"} cursor-pointer p-4 w-full border-2 border-sky-500 rounded-lg transition-all duration-300 ease-in-out hover:bg-sky-600 hover:text-white`}</span>
 <span class="cstat-no" title="statement not covered" >            onClick={() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >              setSelection(1);</span>
@@ -463,6 +473,7 @@
 <span class="cstat-no" title="statement not covered" >            $10</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div</span>
+<span class="cstat-no" title="statement not covered" >            data-testid="$20"</span>
 <span class="cstat-no" title="statement not covered" >            className={`${selection == 2 &amp;&amp; "bg-sky-500 text-white"} cursor-pointer p-4 w-full border-2 border-sky-500 rounded-lg transition-all duration-300 ease-in-out hover:bg-sky-600 hover:text-white`}</span>
 <span class="cstat-no" title="statement not covered" >            onClick={() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >              setSelection(2);</span>
@@ -472,6 +483,7 @@
 <span class="cstat-no" title="statement not covered" >            $20</span>
 <span class="cstat-no" title="statement not covered" >          &lt;/div&gt;</span>
 <span class="cstat-no" title="statement not covered" >          &lt;div</span>
+<span class="cstat-no" title="statement not covered" >            data-testid="$50"</span>
 <span class="cstat-no" title="statement not covered" >            className={`${selection == 3 &amp;&amp; "bg-sky-500 text-white"} cursor-pointer p-4 w-full border-2 border-sky-500 rounded-lg transition-all duration-300 ease-in-out hover:bg-sky-600 hover:text-white`}</span>
 <span class="cstat-no" title="statement not covered" >            onClick={() =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >              setSelection(3);</span>
@@ -538,7 +550,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-12-03T19:38:40.590Z
+                at 2024-12-05T01:50:50.710Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

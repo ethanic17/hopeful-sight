@@ -4,7 +4,8 @@ import { DonateeAccount } from "../components/DonateeAccount";
 import { DonatorAccount } from "../components/DonatorAccount";
 import { Button } from "../components/Button";
 import useAxiosWithToken from "../hooks/axios";
-import { login } from "../app/features/userSlice";
+import { login, logout, setAuth } from "../app/features/userSlice";
+import { useNavigate } from "react-router-dom";
 
 export function Account() {
   const axiosInter = useAxiosWithToken();
@@ -14,6 +15,7 @@ export function Account() {
     account;
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   // State for editable fields
   const [custEmail, setCustEmail] = useState(email);
   const [custPhone, setCustPhone] = useState(phone_number);
@@ -40,7 +42,7 @@ export function Account() {
       let resp = await axiosInter.patch(
         `/api/accounts/${user.account.account_id}/`,
         {
-          user: user.id,
+          user: user.account.account_id,
           phone_number: custPhone,
           address: custAddress,
           city: custCity,
@@ -194,9 +196,19 @@ export function Account() {
               </div>
             </div>
           </div>
-          <div className="flex col-span-2 justify-center">
+          <div className="flex col-span-2 justify-center space-x-5">
             <Button onClick={handleEditAccount}>
               {loading ? "Loading..." : "Save Details"}
+            </Button>
+            <Button
+              className="bg-red-600 hover:bg-red-500"
+              onClick={() => {
+                dispatch(setAuth(""));
+                dispatch(logout());
+                navigate("/");
+              }}
+            >
+              Logout
             </Button>
           </div>
         </div>

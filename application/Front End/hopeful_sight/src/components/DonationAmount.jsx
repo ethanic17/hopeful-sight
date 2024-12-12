@@ -4,7 +4,7 @@ import { FaDollarSign } from "react-icons/fa";
 import { Button } from "./Button";
 import { Input } from "./Input";
 import { useNavigate } from "react-router-dom";
-import useAxiosWithToken from "../hooks/axios";
+import { useAxiosWithToken } from "../hooks/axios";
 
 const regions = [
   { name: "West", id: 1 },
@@ -59,6 +59,7 @@ export function DonationAmount({ setStep }) {
       console.log(resp);
       setStep((state) => state + 1);
     } catch (error) {
+      console.log("SSS: ", error);
       setErrorMessage("Something went wrong. Please try again.");
     } finally {
       setIsLoading(false);
@@ -77,6 +78,7 @@ export function DonationAmount({ setStep }) {
         </h4>
         <div className="flex justify-between space-x-4 text-sky-500 text-center ">
           <div
+            data-testid="$10"
             className={`${selection == 1 && "bg-sky-500 text-white"} cursor-pointer p-4 w-full border-2 border-sky-500 rounded-lg transition-all duration-300 ease-in-out hover:bg-sky-600 hover:text-white`}
             onClick={() => {
               setSelection(1);
@@ -86,6 +88,7 @@ export function DonationAmount({ setStep }) {
             $10
           </div>
           <div
+            data-testid="$20"
             className={`${selection == 2 && "bg-sky-500 text-white"} cursor-pointer p-4 w-full border-2 border-sky-500 rounded-lg transition-all duration-300 ease-in-out hover:bg-sky-600 hover:text-white`}
             onClick={() => {
               setSelection(2);
@@ -95,6 +98,7 @@ export function DonationAmount({ setStep }) {
             $20
           </div>
           <div
+            data-testid="$50"
             className={`${selection == 3 && "bg-sky-500 text-white"} cursor-pointer p-4 w-full border-2 border-sky-500 rounded-lg transition-all duration-300 ease-in-out hover:bg-sky-600 hover:text-white`}
             onClick={() => {
               setSelection(3);
