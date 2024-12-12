@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 
 function getImgPath(isLoggedIn, url) {
   if (isLoggedIn || url.includes(import.meta.env.VITE_URL)) {
-    return url.replace(import.meta.env.VITE_URL, "/src/pages/glassesImages/");
+    return url.replace(import.meta.env.VITE_URL, "/");
   }
   return url;
 }
