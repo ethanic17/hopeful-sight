@@ -2,7 +2,7 @@ import { RiAlarmFill, RiFireFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
 
 function getImgPath(isLoggedIn, url) {
-  if (isLoggedIn) {
+  if (isLoggedIn || url.includes(import.meta.env.VITE_URL)) {
     return url.replace(import.meta.env.VITE_URL, "/src/pages/glassesImages/");
   }
   return url;
@@ -11,6 +11,7 @@ function getImgPath(isLoggedIn, url) {
 export function GlassesCard({ onClick, data }) {
   const isLoggedIn = useSelector((state) => state.user.userInfo.loggedIn);
   const isDonator = useSelector((state) => state.user.userInfo.donator);
+  useSelector((state) => console.log(state.user.userInfo));
 
   return (
     <div className="relative flex flex-col w-full bg-white p-4 rounded-lg shadow-md transition-transform duration-300 hover:shadow-xl hover:scale-102">
@@ -51,7 +52,7 @@ export function GlassesCard({ onClick, data }) {
       )}
 
       {/* Show the in stock icon if inventory is more than 0 */}
-      {data.inventory > 0 && (
+      {(isDonator || !isLoggedIn) && data.inventory > 0 && (
         <div className="absolute top-2 right-2">
           <div
             className={`flex items-center space-x-2 py-1 px-2 rounded-full ${

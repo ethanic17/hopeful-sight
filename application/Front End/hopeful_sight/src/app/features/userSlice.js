@@ -31,7 +31,10 @@ const userSlice = createSlice({
         state.userInfo.donator = false;
       }
     },
-
+    logout: (state) => {
+      localStorage.setItem("token", "");
+      state.userInfo = initialState.userInfo;
+    },
     setAccountType: (state, action) => {
       console.log("setAccountType: " + action.payload);
       if (action.payload == "donator") {
@@ -46,7 +49,7 @@ const userSlice = createSlice({
   },
 });
 
-export const { setAuth, login, editAccount, setAccountType } =
+export const { setAuth, login, logout, editAccount, setAccountType } =
   userSlice.actions;
 
 export default userSlice.reducer;
